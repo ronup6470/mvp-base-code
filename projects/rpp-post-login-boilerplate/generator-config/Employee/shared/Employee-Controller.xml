@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<controller name="Employee">
+	<resources>
+			<resource type="EmployeeModel" name="Employee" route="Employee" />			
+		</resources>
+</controller>

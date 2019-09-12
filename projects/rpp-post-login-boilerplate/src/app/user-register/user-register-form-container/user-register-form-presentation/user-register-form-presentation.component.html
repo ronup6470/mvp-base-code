@@ -1,0 +1,195 @@
+<!-- Site Wrapper -->
+<div class="reg-wrapper d-flex">
+  <!-- Registration Container -->
+  <div class="container m-auto auth-container">
+    <!-- Header -->
+    <header class="px-2 py-4 d-flex justify-content-between">
+      <figure>
+        <img src="assets/img/logo.png" alt="ROC Logo">
+      </figure>
+      <a routerLink="/">
+        <span class="icon-left"></span>
+        <span> Back to main site </span>
+      </a>
+    </header>
+    <!-- End Header -->
+    <!-- Form Section -->
+    <section class="block pt-2 pb-5 d-flex align-items-center flex-column">
+      <header class="d-flex align-items-center flex-column">
+        <h2 class="block-title text-center"> Registration </h2>
+        <img class="title-separator" src="assets/img/flagline.svg" alt="title-separator">
+        <p class="block-desc col-md-7"> Lorem ipsum dolor sit amet consectetur adipisicing
+          elit. Rem magnam
+          sunt provident
+          cupiditate velit
+          repellat. </p>
+      </header>
+      <!-- Registration Form -->
+      <div class="col-8">
+        <form [formGroup]="userRegisterFormGroup">
+          <div class="row">
+
+            <div class="form-group col-md-6 col-12 col-lg-6">
+              <label>{{ 'FULL_NAME.LABEL' | translate }}</label>
+              <input type="text" class="form-control" placeholder="{{ 'FULL_NAME.PLACEHOLDER' | translate }}"
+                formControlName="fullName" />
+
+              <div ngxErrors="fullName" [isFormSubmitted]="isFormSubmitted">
+                <div ngxError="required" when="['touched','dirty']">
+                  {{ 'FULL_NAME.REQUIRED' | translate }}
+                </div>
+                <div ngxError="maxlength" when="['touched','dirty']">
+                  {{ 'FULL_NAME.MAXLENGTH' | translate }}
+                </div>
+
+                <div ngxError="minlength" when="['touched','dirty']">
+                  {{ 'FULL_NAME.MINLENGTH' | translate }}
+                </div>
+
+                <div ngxError="pattern" when="['touched','dirty']">
+                  {{ 'FULL_NAME.REGEX' | translate }}
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6 col-12 col-lg-6">
+              <label>{{ 'USER_NAME.LABEL' | translate }}</label>
+              <input type="text" class="form-control" placeholder="{{ 'USER_NAME.PLACEHOLDER' | translate }}"
+                formControlName="userName" />
+
+              <div ngxErrors="userName" [isFormSubmitted]="isFormSubmitted">
+                <div ngxError="required" when="['touched','dirty']">
+                  {{ 'USER_NAME.REQUIRED' | translate }}
+                </div>
+                <div ngxError="maxlength" when="['touched','dirty']">
+                  {{ 'USER_NAME.MAXLENGTH' | translate }}
+                </div>
+
+                <div ngxError="minlength" when="['touched','dirty']">
+                  {{ 'USER_NAME.MINLENGTH' | translate }}
+                </div>
+                <div ngxError="pattern" when="['touched','dirty']">
+                  {{ 'USER_NAME.REGEX' | translate }}
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6 col-12 col-lg-6">
+              <label>{{ 'EMAIL.LABEL' | translate }}</label>
+              <input type="text" class="form-control" placeholder="{{ 'EMAIL.PLACEHOLDER' | translate }}"
+                formControlName="email" />
+
+              <div ngxErrors="email" [isFormSubmitted]="isFormSubmitted">
+                <div ngxError="required" when="['touched','dirty']">
+                  {{ 'EMAIL.REQUIRED' | translate }}
+                </div>
+                <div ngxError="pattern" when="['touched','dirty']">
+                  {{ 'EMAIL.REGEX' | translate }}
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6 col-12 col-lg-6">
+              <label>{{ 'PHONE_NUMBER.LABEL' | translate }}</label>
+              <input type="text" class="form-control" placeholder="{{ 'PHONE_NUMBER.PLACEHOLDER' | translate }}"
+                formControlName="phoneNumber" />
+
+              <div ngxErrors="phoneNumber" [isFormSubmitted]="isFormSubmitted">
+                <div ngxError="required" when="['touched','dirty']">
+                  {{ 'PHONE_NUMBER.REQUIRED' | translate }}
+                </div>
+                <div ngxError="pattern" when="['touched','dirty']">
+                  {{ 'PHONE_NUMBER.REGEX' | translate }}
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6 col-12 col-lg-6">
+              <label>{{ 'PASSWORD_HASH.LABEL' | translate }}</label>
+              <input type="password" class="form-control" placeholder="{{ 'PASSWORD_HASH.PLACEHOLDER' | translate }}"
+                formControlName="password" />
+
+              <div ngxErrors="password" [isFormSubmitted]="isFormSubmitted">
+                <div ngxError="required" when="['touched','dirty']">
+                  {{ 'PASSWORD_HASH.REQUIRED' | translate }}
+                </div>
+                <div [ngxError]="['maxlength']" when="['touched','dirty']">
+                  {{ 'PASSWORD_HASH.MAXLENGTH' | translate }}
+                </div>
+                <div [ngxError]="['minlength']" when="['touched','dirty']">
+                  {{ 'PASSWORD_HASH.MINLENGTH' | translate }}
+                </div>
+                <div ngxError="pattern" when="['touched','dirty']">
+                  {{ 'PASSWORD_HASH.REGEX' | translate }}
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6 col-12 col-lg-6">
+              <label>{{ 'CONFIRM_PASSWORD.LABEL' | translate }}</label>
+              <input type="password" class="form-control" placeholder="{{ 'CONFIRM_PASSWORD.PLACEHOLDER' | translate }}"
+                formControlName="confirmPassword" />
+
+              <div ngxErrors="confirmPassword" [isFormSubmitted]="isFormSubmitted">
+                <div ngxError="required" when="['touched','dirty']">
+                  {{ 'CONFIRM_PASSWORD.REQUIRED' | translate }}
+                </div>
+                <div ngxError="mustMatch" when="['touched','dirty']">
+                  {{ 'CONFIRM_PASSWORD.REGEX' | translate }}
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6 col-12 col-lg-6">
+              <label>{{ 'LANGUAGE.LABEL' | translate }}</label>
+              <ng-select [items]="userLanguage" (change)="languageChange($event)" bindLabel="name" bindValue="value"
+                [clearable]="false" placeholder="{{ 'LANGUAGE.PLACEHOLDER' | translate }}" formControlName="language">
+              </ng-select>
+
+              <div ngxErrors="language" [isFormSubmitted]="isFormSubmitted">
+                <div ngxError="required" when="['touched','dirty']">
+                  {{ 'LANGUAGE.REQUIRED' | translate }}
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <div class="d-flex align-items-center flex-column">
+            <div>
+              <!-- <div class="g-recaptcha" data-sitekey="test.com"></div> -->
+              <!-- <re-captcha formControlName="captchaToken" (resolved)="resolved($event)" siteKey="'6Ld0HaYUAAAAAIBwSOJGNGM8UKiNVtZhkHapAQUF'"></re-captcha> -->
+              <re-captcha (resolved)="resolved($event)" siteKey="6Ld4BKcUAAAAAAP7pQqUDUIqMk1yncbONozjVAV1"></re-captcha>
+              <!-- <div ngxErrors="captchaToken" [isFormSubmitted]="isFormSubmitted">
+                <div ngxError="required" when="['touched','dirty']">
+                  {{'CAPTCHA.CHECKED' | translate}}
+                </div>
+              </div> -->
+            </div>
+
+            <div class="form-group">
+              <div class="form-label" class="form-check">
+                <input class="form-check-input" type="checkbox" formControlName="termCheck" id="gridCheck">
+                <label class="form-check-label" for="gridCheck">
+                  I Accept terms and conditions.
+                </label>
+              </div>
+              <div ngxErrors="termCheck" [isFormSubmitted]="isFormSubmitted">
+                <div ngxError="mustChecked" when="['touched','dirty']">
+                  {{'TERM_CONDITION.CHECKED'| translate}}
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <button type="submit" class="w-100 btn btn-lg btn-secondary"
+                (click)="saveUserRegister();">{{ 'Register' | translate }}</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- End Registration Form -->
+    </section>
+    <!-- End Form Section-->
+  </div>
+  <!-- End Registration Container -->
+</div>
+<!-- End Site Wrapper -->

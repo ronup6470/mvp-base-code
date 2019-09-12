@@ -1,0 +1,19 @@
+// Breadcrumbs
+
+.breadcrumb-item {
+  color: $primary;
+  font-weight: 600;
+
+  a {
+    &.active {
+      color: $gray-dark;
+    }
+  }
+
+  +.breadcrumb-item {
+    &::before {
+      font-family: "app-icon";
+      font-size: 10px;
+    }
+  }
+}

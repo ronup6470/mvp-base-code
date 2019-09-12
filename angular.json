@@ -1,0 +1,193 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "common-libs": {
+      "root": "projects/common-libs",
+      "sourceRoot": "projects/common-libs/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/common-libs/tsconfig.lib.json",
+            "project": "projects/common-libs/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/common-libs/src/test.ts",
+            "tsConfig": "projects/common-libs/tsconfig.spec.json",
+            "karmaConfig": "projects/common-libs/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/common-libs/tsconfig.lib.json",
+              "projects/common-libs/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "rpp-post-login-boilerplate": {
+      "root": "projects/rpp-post-login-boilerplate/",
+      "sourceRoot": "projects/rpp-post-login-boilerplate/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/rpp-post-login-boilerplate",
+            "index": "projects/rpp-post-login-boilerplate/src/index.html",
+            "main": "projects/rpp-post-login-boilerplate/src/main.ts",
+            "polyfills": "projects/rpp-post-login-boilerplate/src/polyfills.ts",
+            "tsConfig": "projects/rpp-post-login-boilerplate/tsconfig.app.json",
+            "assets": [
+              "projects/rpp-post-login-boilerplate/src/favicon.ico",
+              "projects/rpp-post-login-boilerplate/src/assets",
+              "projects/rpp-post-login-boilerplate/src/assets/js/oidc-client.min.js",
+              {
+                "glob": "silent-renew.html",
+                "input": "projects/rpp-post-login-boilerplate/src",
+                "output": "/"
+              }
+            ],
+            "styles": [
+              "projects/rpp-post-login-boilerplate/src/styles.scss"
+            ],
+            "scripts": [],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "evisa": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/rpp-post-login-boilerplate/src/environments/environment.ts",
+                  "with": "projects/rpp-post-login-boilerplate/src/environments/environment.evisa.ts"
+                }
+              ]
+            },
+              "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/rpp-post-login-boilerplate/src/environments/environment.ts",
+                  "with": "projects/rpp-post-login-boilerplate/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+            
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "rpp-post-login-boilerplate:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "rpp-post-login-boilerplate:build:production"
+            },
+            "evisa": {
+              "browserTarget": "rpp-post-login-boilerplate:build:evisa"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "rpp-post-login-boilerplate:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/rpp-post-login-boilerplate/src/test.ts",
+            "polyfills": "projects/rpp-post-login-boilerplate/src/polyfills.ts",
+            "tsConfig": "projects/rpp-post-login-boilerplate/tsconfig.spec.json",
+            "karmaConfig": "projects/rpp-post-login-boilerplate/karma.conf.js",
+            "styles": [
+              "projects/rpp-post-login-boilerplate/src/styles.scss"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/rpp-post-login-boilerplate/src/favicon.ico",
+              "projects/rpp-post-login-boilerplate/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/rpp-post-login-boilerplate/tsconfig.app.json",
+              "projects/rpp-post-login-boilerplate/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "rpp-post-login-boilerplate-e2e": {
+      "root": "projects/rpp-post-login-boilerplate-e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/rpp-post-login-boilerplate-e2e/protractor.conf.js",
+            "devServerTarget": "rpp-post-login-boilerplate:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "rpp-post-login-boilerplate:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/rpp-post-login-boilerplate-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "rpp-post-login-boilerplate"
+}

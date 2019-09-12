@@ -1,0 +1,71 @@
+<header id="topbar" class="d-flex align-items-center px-md-4 px-3">
+    <label for="toggle-menu" class="toggle-menu-icon d-flex mr-md-3 mr-2 mb-0">
+        <span class="icon-menu" (click)=toggelSideBar()></span>
+    </label>
+    <h5 class="page-title mb-0">
+        <lib-page-title></lib-page-title>
+        <lib-breadcrumb></lib-breadcrumb>
+    </h5>
+    <div class="ml-auto flex-sm-shrink-1">
+        <ul class="d-flex align-items-center list-unstyled m-0">
+            <li class="notification">
+                <div class="dropdown {{ dropdownState ? 'show' : '' }}">
+                    <button #buttonRef class="btn p-0 d-flex dropdown-btn position-relative" type="button"
+                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                        (click)="renderNotifications()">
+                        <span class="icon icon-notification"></span>
+                        <span class="badge badge-pill badge-danger">2</span>
+                    </button>
+                </div>
+            </li>
+            <li class="language mx-md-3 mx-2">
+                <div class="form-group mb-0">
+                    <form [formGroup]="languageGroupForm">
+                        <select class="form-control cursor-pointer py-2 px-md-2 px-1" id="exampleFormControlSelect1"
+                            formControlName="selectedLanguage" (change)="languageChanged()">
+
+                            <option *ngFor="let singleLanguage of languageData; trackBy: trackBy "
+                                [ngValue]="singleLanguage.code">
+                                {{ singleLanguage.name }}</option>
+                        </select>
+                    </form>
+                </div>
+            </li>
+            <li class="user-profile">
+                <div class="dropdown {{ userProfileState ? 'show' : '' }}">
+                    <button
+                        class="btn-user d-block d-md-none btn p-0 d-flex align-items-center dropdown-btn dropdown-toggle"
+                        type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false" (click)="userProfileBtn()">
+                        <span class="icon-user"></span>
+                    </button>
+                    <button class="d-none btn p-0 d-md-flex align-items-center dropdown-btn dropdown-toggle"
+                        type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false" (click)="userProfileBtn()">
+                        <!-- <img src="assets/img/avatar/img_avatar.png" alt="avatar-img" class="avatar-img mr-md-2"> -->
+                        <span class="username">Welcome, {{ userName }}</span>
+                    </button>
+                    <div class="dropdown-menu {{ userProfileState ? 'show' : '' }} mt-2 shadow rounded p-2 dropdown-menu-right border-0"
+                        aria-labelledby="dropdownMenuButton" [@fadeInDown]="userProfileState ? 'open' : 'closed'">
+                        <span class="arrow-up icon-drop-down text-white"></span>
+                        <a class="dropdown-item" [routerLink]="'/user-profile/1'" (click)="userProfileBtn()">
+                            <span class="icon-user mr-2"></span>
+                            <small>Profile</small>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a [routerLink]="'/change-password'" class="dropdown-item" (click)="userProfileBtn()">
+                            <span class="icon-settings mr-2"></span>
+                            <small>Settings</small>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a (click)="logout()" class="dropdown-item cursor-pointer">
+                            <span class="icon-logout mr-2"></span>
+                            <small>Logout</small>
+                        </a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+</header>

@@ -1,0 +1,27 @@
+<div class="row py-3">
+  <app-card *ngFor="let card of cardConfig" [style.minHeight.px]="card.height"
+    class="card status-card h-100 primary rounded-0 border-0" [card]="card">
+  </app-card>
+  <div class="col-12 mb-4 mr-4 card flex-row align-items-center rounded-0 border-0 ">
+    <div class="card-body">
+      <div class="card-content flex-grow-1">
+        <!-- <h5 class="title">E-Passport</h5> -->
+        <small class="card-status text-uppercase font-weight-bold">Reference Links</small>
+      </div>
+      <ul>
+        <li *ngFor="let functionalLink of functionalLinkConfig">
+          <a role="button" target="_blank" rel="noopener noreferrer" href="{{functionalLink.link}}">
+            <span> {{functionalLink.label}}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body">
+      <div class="card-content flex-grow-1 text-right">
+        <a [routerLink]="'/guidelines'">
+          <small class="card-status text-uppercase font-weight-bold">Guidelines</small>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

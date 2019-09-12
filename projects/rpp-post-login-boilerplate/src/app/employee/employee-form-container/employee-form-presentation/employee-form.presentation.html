@@ -1,0 +1,124 @@
+<form class="floating-form" [formGroup]="employeeFormGroup">
+  <div class="row">
+        <div class="form-group col-md-6 col-12 col-lg-6">
+            <input type="text" class="form-control"  formControlName="name" floatingLabel  autoFocus  
+             />
+            <label class="floating-form-label">{{ 'NAME_LABEL' | translate }}</label>
+          <div ngxErrors="name" [isFormSubmitted]="isFormSubmitted">                
+              <div ngxError="required" [when]="['touched','dirty']">
+              {{ 'NAME.REQUIRED' | translate }}
+              </div>
+              <div [ngxError]="['maxlength']" [when]="['touched','dirty']">
+              {{ 'NAME.MAXLENGTH' | translate }}   
+              </div>
+              <div [ngxError]="['minlength']" [when]="['touched','dirty']">
+              {{ 'NAME.MINLENGTH' | translate }}   
+              </div>
+         </div>
+      </div> 
+        <div class="form-group col-md-6 col-12 col-lg-6">
+            <input type="text" class="form-control"  formControlName="company" floatingLabel   
+             />
+            <label class="floating-form-label">{{ 'COMPANY_LABEL' | translate }}</label>
+          <div ngxErrors="company" [isFormSubmitted]="isFormSubmitted">                
+              <div ngxError="required" [when]="['touched','dirty']">
+              {{ 'COMPANY.REQUIRED' | translate }}
+              </div>
+         </div>
+      </div> 
+        <div class="form-group col-md-6 col-12 col-lg-4">
+            <ng-select [items]="" bindLabel="" bindValue="" [clearable]="false"  
+              formControlName="city" floatingLabel   class="form-control float-outline p-0" >
+            </ng-select>
+            <label for="" class="floating-form-label">{{ 'CITY_LABEL' | translate }}</label>
+      </div> 
+        <div class="form-group col-md-6 col-12 col-lg-4">
+            <ng-select [items]="" [multiple]="true" [clearable]="false" [closeOnSelect]="false" bindLabel="" bindValue="" 
+               formControlName="multiCity" floatingLabel   class="form-control float-outline p-0" >
+
+              <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+                <input id="item-{{index}}" type="checkbox" [checked]="item$.selected" /> {{ item.name }}
+              </ng-template>
+            </ng-select>
+            <label for="" class="floating-form-label">{{ 'MULTICITY_LABEL' | translate }}</label>
+      </div> 
+        <div class="form-group col-md-6 col-12 col-lg-4">
+            <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker formControlName="birthDate" [bsConfig]="bsConfig"
+               placement="bottom left" floatingLabel   >
+            <label class="floating-form-label">{{ 'BIRTHDATE_LABEL' | translate }}</label>
+      </div> 
+        <div class="form-group col-md-6 col-12 col-lg-4">
+            <label>{{ 'ORDERTIME_LABEL' | translate }}</label>
+            <ngb-timepicker formControlName="orderTime" [meridian]="meridian" [spinners]="false" ></ngb-timepicker>                        
+      </div> 
+        <div class="form-group col-md-6 col-12 col-lg-4">
+            <input type="text" class="form-control"  formControlName="productNo" floatingLabel   
+             />
+            <label class="floating-form-label">{{ 'PRODUCTNUMBER_LABEL' | translate }}</label>
+          <div ngxErrors="productNo" [isFormSubmitted]="isFormSubmitted">                
+              <div ngxError="required" [when]="['touched','dirty']">
+              {{ 'PRODUCTNUMBER.REQUIRED' | translate }}
+              </div>
+         </div>
+      </div> 
+        <div class="form-group col-md-6 col-12 col-lg-4">
+            <input type="text" class="form-control"  formControlName="email" floatingLabel   
+             />
+            <label class="floating-form-label">{{ 'EMAIL_LABEL' | translate }}</label>
+          <div ngxErrors="email" [isFormSubmitted]="isFormSubmitted">                
+              <div ngxError="pattern" [when]="['touched','dirty']">
+                {{ 'EMAIL.REGEX' | translate }} 
+              </div>
+         </div>
+      </div> 
+        <div class="form-group col-md-6 col-12 col-lg-12">
+            <lib-file-upload formControlName="image"  floatingLabel ></lib-file-upload>
+            <label class="floating-form-label">{{ 'IMAGE_LABEL' | translate }}</label>
+          <div ngxErrors="image" [isFormSubmitted]="isFormSubmitted">                
+              <div ngxError="required" [when]="['touched','dirty']">
+              {{ 'IMAGE.REQUIRED' | translate }}
+              </div>
+              <div ngxError="requiredFileType" [when]="['touched','dirty']">{{ 'fileTypeValidationMessage' | translate }}</div>
+              <div ngxError="maxFileSize" [when]="['touched','dirty']">{{ 'maxSizeValidationMessage' | translate }}</div>
+         </div>
+      </div> 
+        <div class="form-group col-md-6 col-12 col-lg-12">
+            <textarea rows="5" cols="50" name="description" class="form-control" formControlName="description"
+               role="textarea" floatingLabel   ></textarea>
+            <label class="floating-form-label">{{ 'DESCRIPTION_LABEL' | translate }}</label>
+          <div ngxErrors="description" [isFormSubmitted]="isFormSubmitted">                
+              <div ngxError="required" [when]="['touched','dirty']">
+              {{ 'DESCRIPTION.REQUIRED' | translate }}
+              </div>
+         </div>
+      </div> 
+        <div class="form-group col-md-6 col-12 col-lg-6">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="checkbox1" formControlName="isAdmin" floatingLabel   >
+              <label class="custom-control-label" for="checkbox1">{{ 'ISADMIN_LABEL' | translate }}</label>
+            </div>
+          <div ngxErrors="isAdmin" [isFormSubmitted]="isFormSubmitted">                
+              <div ngxError="required" [when]="['touched','dirty']">
+              {{ 'ISADMIN.REQUIRED' | translate }}
+              </div>
+         </div>
+      </div> 
+        <div class="form-group col-md-6 col-12 col-lg-6">
+            {{ 'GENDER_LABEL' | translate }}
+            <div class="custom-control custom-radio">
+              <input type="radio" class="custom-control-input" id="Option1" formControlName="gender" value="Option1" floatingLabel   />
+              <label class="custom-control-label" for="Option1">Option1</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input type="radio" class="custom-control-input" id="Option2" formControlName="gender" value="Option2" floatingLabel   />
+              <label class="custom-control-label" for="Option2">Option2</label>
+            </div>
+      </div> 
+    </div>
+    <div class="row">
+      <div class="col-12">  
+            <button class="btn btn-flat-primary mr-1" (click)="cancel();">{{ 'btnCancel' | translate }}</button>
+            <button class="btn btn-primary m-2" (click)="saveEmployee();">{{ 'btnSave' | translate }}</button>     
+      </div>
+    </div>
+</form>

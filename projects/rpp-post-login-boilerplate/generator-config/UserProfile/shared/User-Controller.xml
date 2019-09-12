@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<controller name="User">
+	<resources>
+			<resource type="UserModel" name="User" route="User" />			
+		</resources>
+	<!-- <actions>
+		<action verb="Get" route="{id}" validationEnable="false" cacheEnable="true">
+			<request>
+				<param name="id" type="int" bindFrom="Query" />
+			</request>
+			<response type="User" />
+		</action>
+		<action verb="Get" route="" validationEnable="false" cacheEnable="true">
+			<response type="List" typeOf="User" />
+		</action>
+		<action verb="Post" route="" validationEnable="true">
+			<request>
+				<param name="user" type="User" bindFrom="Body" />
+			</request>
+			<response type="int" />
+		</action>
+	</actions> -->
+</controller>

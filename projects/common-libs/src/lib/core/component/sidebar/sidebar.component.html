@@ -1,0 +1,98 @@
+<!-- <input type="checkbox" name="toggle-menu" id="toggle-menu"> -->
+<!-- <aside id="primary-nav" class="d-flex flex-column shadow"> -->
+<!-- Dashboard Logo -->
+<div class="logo bg-primary d-flex align-items-center">
+  <a href="#" class="brand-logo">
+    <img src="assets/img/logo.png" alt="Logo-img" class="large-logo">
+    <img src="assets/img/small-logo.png" alt="small-logo-img" class="small-logo">
+  </a>
+</div>
+<!-- End: Dashboard Logo [class.active]="menu.isOpen ? true : null"  -->
+<!-- Navigation menu -->
+<nav class="d-flex h-100 overflow-hidden">
+  <ul class="nav flex-column flex-nowrap flex-grow-1 py-3">
+    <li class="nav-item" #menuRef *ngFor="let menu of menuData; let i=index; trackBy: trackBy; "
+      (mouseleave)="menu.permisison && !menu.isRouteLink && menu.isOpen && isSideBarCollapsed "
+      (mouseenter)="menu.permisison && menu.isOpen && isSideBarCollapsed && createSubmenuOverLay(menu,i)">
+      <a class="nav-link" *ngIf="menu.permisison && !menu.isRouteLink; else availableRoute; " data-toggle="collapse"
+        role="button" [attr.aria-expanded]="menu.isOpen" aria-controls="visa-toggle" target="_blank "
+        rel="noopener noreferrer" href="{{ menu.link }}" (click)="disableLink(menu.isOpen)">
+        <span class="menu-icon icon {{ menu.icon }}"></span>
+        <div class="menu-label">
+          <span class="text-truncate">{{ menu.name }}</span>
+        </div>
+      </a>
+      <ng-template #availableRoute>
+        <a class="nav-link" *ngIf="menu.permisison && menu.isRouteLink && menu.link !==''; else noRoutes; "
+          data-toggle="collapse" role="button" [attr.aria-expanded]="menu.isOpen" aria-controls="visa-toggle"
+          routerLinkActive="active" [routerLink]="menu.link">
+          <span class="menu-icon icon {{ menu.icon }}"></span>
+          <div class="menu-label">
+            <span class="text-truncate">{{ menu.name }}</span>
+          </div>
+        </a>
+        <ng-template #noRoutes>
+          <a class="nav-link" href="#" onclick="return false" *ngIf="menu.permisison" (click)="getOverlayHelp()"
+            data-toggle="collapse" role="button" [attr.aria-expanded]="menu.isOpen" aria-controls="visa-toggle">
+            <span class="menu-icon icon {{ menu.icon }}"></span>
+            <div class="menu-label">
+              <span class="text-truncate">{{ menu.name }}</span>
+            </div>
+          </a>
+        </ng-template>
+      </ng-template>
+      <ng-container *ngIf="menu.permisison && menu.isOpen" #subMenuRef></ng-container>
+    </li>
+    <li routerLinkActive="active" class="nav-item">
+      <a class="nav-link" [routerLink]="'/data-table'">
+        <span class="menu-icon icon-help"></span>
+        <div class="menu-label">
+          <span class="text-truncate">Data Table</span>
+        </div>
+      </a>
+    </li>
+    <li routerLinkActive="active" class="nav-item">
+      <a class="nav-link" [routerLink]="'/customer'">
+        <span class="menu-icon icon-help"></span>
+        <div class="menu-label">
+          <span class="text-truncate">Customer</span>
+        </div>
+      </a>
+    </li>
+    <li routerLinkActive="active" class="nav-item">
+      <a class="nav-link" [routerLink]="'/customer-card-list'">
+        <span class="menu-icon icon-help"></span>
+        <div class="menu-label">
+          <span class="text-truncate">Customer Card List</span>
+        </div>
+      </a>
+    </li>
+    <li routerLinkActive="active" class="nav-item">
+      <a class="nav-link" [routerLink]="'/employee'">
+        <span class="menu-icon icon-help"></span>
+        <div class="menu-label">
+          <span class="text-truncate">Employee</span>
+        </div>
+      </a>
+    </li>
+    <li routerLinkActive="active" class="nav-item">
+      <a class="nav-link" [routerLink]="'/user'">
+        <span class="menu-icon icon-help"></span>
+        <div class="menu-label">
+          <span class="text-truncate">User</span>
+        </div>
+      </a>
+    </li>
+    <li routerLinkActive="active" class="nav-item">
+      <a class="nav-link" [routerLink]="'/user-info'">
+        <span class="menu-icon icon-help"></span>
+        <div class="menu-label">
+          <span class="text-truncate">User Info</span>
+        </div>
+      </a>
+    </li>
+    
+  </ul>
+</nav>
+<!-- End: Navigation menu -->
+<!-- </aside> -->

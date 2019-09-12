@@ -1,0 +1,70 @@
+// All the section Title Sepator
+.title-separator {
+    width: 30px;
+}
+
+.block {
+    padding: 4rem 0 2rem 0;
+
+    .block-title {
+        font-weight: $font-weight-bold;
+        letter-spacing: 2px;
+        color: $primary;
+        text-transform: uppercase;
+    }
+
+    .block-desc {
+        padding: 1rem 0;
+        text-align: center;
+
+        color: $gray;
+    }
+}
+
+
+/*
+    Sidebar of Detail page
+*/
+.sidebar {
+    align-self: baseline;
+    -ms-flex: auto;
+    flex: 1 0 230px;
+    max-width: 230px;
+    border-right: $border-width solid $border-color;
+
+    @include media-breakpoint-down('md') {
+        display: none;
+    }
+}
+
+.sidebar-items {
+    .sidebar-item {
+        display: block;
+        padding: .75rem;
+        text-decoration: none;
+        font-size: $font-size-base - .1;
+        font-weight: $font-weight-semibold;
+        color: $gray;
+
+        &:hover {
+            background-color: lighten($secondary, 20%);
+            color: $primary;
+        }
+
+        &.active {
+            background-color: $secondary;
+            color: $primary;
+            position: relative;
+
+            &::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                width: 2px;
+                background-color: $primary;
+            }
+        }
+    }
+}

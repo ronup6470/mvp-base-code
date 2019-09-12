@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<controller name="User">
+	<resources>
+			<resource type="UserModel" name="User" route="User" />			
+		</resources>
+</controller>

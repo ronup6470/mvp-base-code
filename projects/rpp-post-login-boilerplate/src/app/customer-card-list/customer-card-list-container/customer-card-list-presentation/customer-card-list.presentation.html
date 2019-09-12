@@ -1,0 +1,45 @@
+<!-- Aside list -->
+<div class="card h-100 overflow-hidden">
+  <div class="d-flex align-items-center border-bottom p-2">
+    <div class="form-group m-0 flex-grow-1 position-relative">
+      <input type="text" #search (keyup.enter)="onSearch(search.value)" class="form-control search-area"
+        name="search-area" aria-label="Search" aria-describedby="search-list">
+      <div *ngIf="search.value.length === 0" class="search-icon d-flex align-items-center">
+        <span class="fa fa-search px-2 "></span>
+        Search...
+      </div>
+    </div>
+    <button routerLink="add" class="btn btn-primary rounded-btn flex-shrink-0 ml-2">
+      <span class="fa fa-plus"></span>
+    </button>
+  </div>
+  <div class="tile-list h-100 overflow-auto" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
+    (scrolled)="baseOnScroll()" [scrollWindow]="false">
+    <div *ngFor="let customer of customers;trackBy: trackBy;let i= index" class="position-relative">
+      <a [ngClass]="{'active': customer.id == activeId}" (click)="viewCustomer(customer)" class="tile d-block text-decoration-none px-2 py-3 cursor-pointer border-bottom">
+        <div class="d-flex align-items-start justify-content-between mr-4">
+        <h5>{{customer.firstName}}</h5>
+        </div>
+        <p class="m-0">{{customer.company}} </p>
+      </a>
+      <div ngbDropdown container="body" placement="bottom-right" class="tile-action-btn px-2 py-3">
+        <button class="btn bg-transparent m-0 py-0 px-2 action-btn" ngbDropdownToggle>
+          <span class="fa fa-ellipsis-v"></span>
+        </button>
+        <ul id="dropdown-basic" ngbDropdownMenu aria-labelledby="dropdownMenu">
+          <button class="dropdown-item" (click)= "getActiveIndex(customer, $event)" ngbDropdownItem routerLink="edit/{{customer.id}}">TRANSLATION.EDIT</button>
+          <button class="dropdown-item" (click)="openModal(customer)" ngbDropdownItem>TRANSLATION.DELETE</button>
+        </ul>
+      </div>
+    </div>
+    <div *ngIf="!customers || customers?.length===0  ">
+      <a class="tile d-block text-decoration-none px-2 py-3 cursor-pointer border-bottom">
+        <div class="d-flex align-items-start justify-content-between mr-4">
+          <p class="m-0">No Record Found</p>
+        </div>
+      </a>
+    </div> 
+
+  </div>
+</div>
+<!-- End: Aside list -->

@@ -1,0 +1,8 @@
+<ul [@bodyExpansion]="toggleState ? 'expanded' : 'collapsed'" class="sub-menu list-unstyled" id="visa-toggle">
+  <li *ngFor="let subMenu of subMenuData; trackBy: trackBy ">
+    <a [routerLink]="subMenu.link" class="nav-link">
+      <span class="menu-icon {{ subMenu.icon }}"></span>
+      <span class="text-truncate">{{ subMenu.name }}</span>
+    </a>
+  </li>
+</ul>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component name="Customerlist" module="CustomerList" breadcrumbKey="BREADCRUMB.CUSTOMER" 
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <xi:include href="./generator-config/Employee/shared/Customer-Model.2.xml" />
+    <xi:include href="./generator-config/Employee/shared/Customer-Controller.2.xml" />
+    <table model="Customer" controller="Customer" isCheckable="true" isAddable="true" hasBreadcrumb="true" hasFilters="true" hasSorting="true" hasPagination="true" hasActions="true" hasGlobalSearch="true">
+        <action>
+            <edit enabled="true" labelKey="EDIT"></edit>
+            <delete enabled="true" labelKey="DELETE"></delete>
+        </action>
+        <columns>
+            <column isFilterable="false" isSortable="false" class="">id</column>
+            <column isFilterable="true" isSortable="false" class="align-left">name</column>
+            <column isFilterable="true" isSortable="true" class="align-right">company</column>
+            <column isFilterable="true" isSortable="true" class="align-center">group</column>
+            <column isFilterable="false" isSortable="true" class="">createdAt</column>
+            <column isFilterable="true" isSortable="false" class="">email</column>
+            <column isFilterable="true" isSortable="false" class="">productNumber</column>
+            <column isFilterable="true" isSortable="false" class="">image</column>
+        </columns>
+    </table>
+    
+</component>

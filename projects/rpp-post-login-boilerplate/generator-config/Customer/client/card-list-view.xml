@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- 
+    Layout
+     This XML can be used to generate a screen as follows
+      __________________________
+     |_______|                  |
+     |Item 1 |                  |
+     |_______|                  |
+     |Item 2 |  Description     |
+     |_______|                  |
+     |Item 3 |                  |
+     |_______|__________________|
+
+ -->
+<!-- Indicates the begning of the component -->
+<!-- name   : The name of the component class suffixed with Component. Its container will be named as UserContainerComponent. Its presentation class will be named as
+              UserPresentationComponent and its selector will be <app-user-ui> and its presenter service will be named as UserPresenter.
+     module : The module to which the component belongs to. If the module does not exist, the generator should create a module and its associated routing file
+              , register the component in the declarations array and add its route in the routing file of the module. In case a new module is created, the
+              generator should add the module in the lazy loaded routes of app.routing.module.            
+     breadcrumbKey : The breadcrums label whose value will be fetched from the JSON file by using ngx-translate.         
+ -->
+<component name="Customer" module="CustomerCardList" breadcrumbKey="BREADCRUMB.CUSTOMER"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <xi:include href="./generator-config/Customer/shared/Customer-Model.xml"/>
+    <xi:include href="./generator-config/Customer/shared/Customer-Controller.xml"/>
+    
+     <card-list isSearchable="true" isAddable="true" model="Customer" controller="Customer" hasAction="true">
+        <action>
+            <edit enabled="true" labelKey="TRANSLATION.EDIT" ></edit>
+            <delete enabled="true" labelKey="TRANSLATION.DELETE" ></delete>
+        </action>
+        <!-- Maximum three labels can be displayed -->
+        <labels>
+            <label labelKey="TRANSLATION.FASTNAME" bind="firstName">firstName</label>
+            <label labelKey="TRANSLATION.COMPANY" bind="company">company</label>
+        </labels>
+    </card-list>
+    <view model="Customer" controller="Customer">
+        <labels>
+            <!-- <layout col="2"> -->
+                <label labelKey="TRANSLATION.FASTNAME" bind="firstName"></label>
+                <label labelKey="TRANSLATION.COMPANY" bind="company"></label>
+                <label labelKey="TRANSLATION.GROUP" bind="group"></label>
+                <label labelKey="TRANSLATION.EMAIL" bind="email"></label>
+            <!-- </layout> -->
+        </labels>
+    </view>
+    <form model="Customer" controller="Customer">
+        <layout col="2">
+           <input type="text" bind="firstName"></input>
+            <input type="text" bind="company"></input>
+            <input type="text" bind="group"></input>
+            <input type="text" bind="email"></input>            
+            <input type="date" bind="createdAt"></input>
+            <input type="text" bind="productNo"></input>   
+            <input type="file" bind="image"></input>
+        </layout>
+    </form>
+    <!-- <table model="Customer" controller="Customer" isCheckable="true" isAddable="true" hasBreadcrumb="true"
+     hasFilters="true" hasSorting="true" hasPagination="true" hasActions="true" hasGlobalSearch="true">
+        <action>
+            <edit enabled="true" labelKey="EDIT"></edit>
+            <delete enabled="true" labelKey="DELETE"></delete>
+        </action>
+        <columns>
+            <column isFilterable="false" isSortable="false" class="">id</column>
+            <column isFilterable="true" isSortable="false" class="align-left">firstName</column>
+            <column isFilterable="true" isSortable="true" class="align-right">company</column>
+            <column isFilterable="true" isSortable="true" class="align-center">group</column>
+            <column isFilterable="false" isSortable="true" class="">createdAt</column>
+            <column isFilterable="true" isSortable="false" class="">email</column>
+            <column isFilterable="true" isSortable="false" class="">productNo</column>
+            <column isFilterable="true" isSortable="false" class="">image</column>
+        </columns>
+    </table> -->
+    
+   
+</component>

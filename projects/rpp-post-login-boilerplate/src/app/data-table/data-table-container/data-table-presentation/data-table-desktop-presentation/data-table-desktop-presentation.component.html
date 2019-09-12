@@ -1,0 +1,152 @@
+<!-- <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+    <div class="data-tbl-search flex-grow-1">
+      <div class="input-group col-12 col-sm-10 col-md-8 col-lg-6 my-1 px-0">
+        <input type="text" class="form-control" #search (keyup.enter)="onSearch(search.value)" name="search-area"
+          id="search-area" placeholder="Search..." aria-label="Search" aria-describedby="button-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="button" (click)="onSearch(search.value)">
+            <span class="fa fa-search px-2"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="data-tbl-action flex-grow-0">
+      <button type="button" class="btn btn-flat-secondary mr-1" (click)="clearFilter()" *ngIf="isFilterApply">
+        <span>{{'btnClearFilter' | translate}}</span>
+      </button>
+      <button type="button" class="btn btn-outline-primary mr-1" (click)="openFilter()">
+        <span class="fa fa-filter mr-1"></span>
+        <span>{{'btnFilter' | translate}}</span>
+      </button>
+      <button type="button" class="btn btn-primary" routerLink="">
+        <span class="fa fa-plus mr-1"></span>
+        <span>{{'btnNewRecord' | translate}}</span>
+      </button>
+    </div>
+  </div> -->
+
+<!-- Data-Table HMTL -->
+<!-- 
+      Data-Table variation:
+      [tbl-bordered, tbl-borderless]
+     -->
+<div class="table-responsive">
+  <table class="table data-tbl table-hover bg-white m-0">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col" style="width: 50px">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="select-all" [checked]="isCheckAll"
+              (click)="onCheckAll()" />
+            <label class="custom-control-label" for="select-all"></label>
+          </div>
+        </th>
+        <th appSortingOrder [column]="'firstName'" (orderType)="onSortOrder('firstName',$event)" scope="col"
+          class="column-sort" style="width: 150px">
+          <span>{{ 'tableHeader.name' | translate }}</span>
+        </th>
+        <th appSortingOrder [column]="'company'" (orderType)="onSortOrder('company',$event)" scope="col"
+          class="column-sort" style="width: 150px">
+          <span>{{ 'tableHeader.company' | translate }}</span>
+        </th>
+        <th appSortingOrder [column]="'group'" (orderType)="onSortOrder('group',$event)" scope="col" class="column-sort"
+          style="width: 150px">
+          <span>{{ 'tableHeader.group' | translate }}</span>
+        </th>
+        <th appSortingOrder [column]="'createdAt'" (orderType)="onSortOrder('createdAt',$event)" scope="col"
+          class="column-sort" style="width: 150px">
+          <span>{{ 'tableHeader.createdAt' | translate }}</span>
+        </th>
+        <th appSortingOrder [column]="'email'" (orderType)="onSortOrder('email',$event)" scope="col" class="column-sort"
+          style="width: 150px">
+          <span>{{ 'tableHeader.email' | translate }}</span>
+        </th>
+        <th appSortingOrder [column]="'productNo'" (orderType)="onSortOrder('productNo',$event)" scope="col"
+          class="column-sort" style="width: 150px">
+          <span>{{ 'tableHeader.productNumber' | translate }}</span>
+        </th>
+        <th appSortingOrder [column]="'image'" (orderType)="onSortOrder('image',$event)" scope="col" class="column-sort"
+          style="width: 150px">
+          <span>{{ 'tableHeader.image' | translate }}</span>
+        </th>
+
+        <th style="width: 90px">
+          <span>{{ 'action' | translate }}</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers ;trackBy: trackBy">
+        <td scope="row">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="{{customer.id}}" [checked]="customer.isChecked"
+              [value]="customer.id" (click)="onCheck(customer)" />
+            <label class="custom-control-label" for="{{customer.id}}"></label>
+          </div>
+        </td>
+        <td>{{customer.firstName}}</td>
+        <td>{{customer.company}}</td>
+        <td>{{customer.group}}</td>
+        <td>{{customer.createdAt }}</td>
+        <td>{{customer.email}}</td>
+        <td>{{customer.productNo}}</td>
+        <td>{{customer.image}}</td>
+        <td align="center">
+          <div ngbDropdown container="body" class="data-tbl-drpodown">
+            <button class="btn bg-transparent m-0 py-0 px-2" id="dropdownMenu{{customer.id}}" ngbDropdownToggle>
+              <span class="fa fa-ellipsis-v"></span>
+            </button>
+            <ul id="dropdown-basic" ngbDropdownMenu aria-labelledby="dropdownMenu">
+              <button class="dropdown-item" ngbDropdownItem routerLink="">{{'btnEdit' | translate}}</button>
+              <button class="dropdown-item" ngbDropdownItem
+                (click)="openModal(customer.id)">{{'btnDelete' | translate}}</button>
+            </ul>
+          </div>
+        </td>
+      </tr>
+
+      <!-- colspan base on total column -->
+      <tr *ngIf="!customers || customers?.length===0  ">
+        <td align="center" colspan="10" class="text-muted">{{'tblMessage' | translate}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Data-table footer area -->
+<!-- <div *ngIf="customers?.length>0 " class="d-flex flex-wrap justify-content-between align-items-center mt-3">
+    
+    <div class="data-tbl-status text-muted">
+      {{'paginationShowing' | translate}} {{tableProperty?.start}} {{'paginationTo' | translate}} {{tableProperty?.end}}
+      {{'paginationOf' | translate}}
+      {{tableProperty?.totalRecord}} {{'paginationEntries' | translate}}.
+    </div>
+   
+    <div class="data-tbl-pagination py-2">
+      <ngb-pagination [(page)]="tableProperty.pageNumber" [pageSize]="tableProperty.pageLimit" [maxSize]="7"
+        [rotate]="true" [collectionSize]=" tableProperty?.totalRecord" (pageChange)="onPageChange($event)">
+        <ng-template ngbPaginationPrevious>{{'previewPage' | translate}}</ng-template>
+        <ng-template ngbPaginationNext>{{'nextPage' | translate}}</ng-template>
+        <ng-template ngbPaginationEllipsis>....</ng-template>
+      </ngb-pagination>
+    </div>
+   
+    <div class="data-tbl-length">
+      <select name="tbl-length" id="tbl-length" class="form-control" (change)="onPageSizeChange($event.target.value)">
+        <ng-container *ngFor="let item of pageSize">
+          <option *ngIf="tableProperty?.totalRecord >= (item-10)" [selected]='(tableProperty?.pageLimit===item)'
+            value="{{item}}">
+            {{item}}
+          </option>
+        </ng-container>
+      </select>
+    </div>
+  </div> -->
+
+<ng-template #modalTemplate>
+  <div class="modal-body text-center">
+    <p>Do you want to delete record?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()">Yes</button>
+    <button type="button" class="btn btn-primary" (click)="decline()">No</button>
+  </div>
+</ng-template>

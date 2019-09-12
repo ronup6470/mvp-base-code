@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- 
+    Layout
+     This XML can be used to generate a screen as follows
+      __________________________
+     |_______|                  |
+     |Item 1 |                  |
+     |_______|                  |
+     |Item 2 |  Description     |
+     |_______|                  |
+     |Item 3 |                  |
+     |_______|__________________|
+
+ -->
+<!-- Indicates the begning of the component -->
+<!-- name   : The name of the component class suffixed with Component. Its container will be named as UserContainerComponent. Its presentation class will be named as
+              UserPresentationComponent and its selector will be <app-user-ui> and its presenter service will be named as UserPresenter.
+     module : The module to which the component belongs to. If the module does not exist, the generator should create a module and its associated routing file
+              , register the component in the declarations array and add its route in the routing file of the module. In case a new module is created, the
+              generator should add the module in the lazy loaded routes of app.routing.module.            
+     breadcrumbKey : The breadcrums label whose value will be fetched from the JSON file by using ngx-translate.         
+ -->
+<component name="Student" module="Student" breadcrumbKey="BREADCRUMB.STUDENT"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+    <xi:include href="./generator-config/Customer/shared/Student-Model.xml"/>
+    <xi:include href="./generator-config/Customer/shared/Student-Controller.xml"/>
+    <card-list isSearchable="true" isAddable="true" model="Student" controller="Student" hasAction="true">
+        <action>
+            <edit enabled="true">TRANSLATION.EDIT</edit>
+            <delete enabled="true">TRANSLATION.EDIT</delete>
+        </action>
+        Maximum three labels can be displayed
+        <labels>
+            <label labelKey="TRANSLATION.NAME" bind="name">name</label>
+            <label labelKey="TRANSLATION.SCHOOL" bind="school">school</label>
+        </labels>
+    </card-list>
+    <view model="Student" controller="Student">
+        <labels>
+            <!-- <layout col="2"> -->
+                <label labelKey="TRANSLATION.NAME" bind="name"></label>
+                <label labelKey="TRANSLATION.SCHOOL" bind="school"></label>
+                <label labelKey="TRANSLATION.FEES" bind="fees"></label>
+                <label labelKey="TRANSLATION.SUBJECT" bind="subject"></label>
+            <!-- </layout> -->
+        </labels>
+    </view>
+    <form model="Student" controller="Student">
+        <layout col="2">
+            <input type="text" bind="name"></input>
+            <input type="text" bind="school"></input>
+            <input type="datetime" bind="birthday"></input>
+            <input type="file" bind="photo"></input>
+        </layout>
+    </form>
+    <!-- <table model="Student" controller="Student" isCheckable="true" isAddable="true" hasBreadcrumb="true"
+     hasFilters="true" hasSorting="true" hasPagination="true" hasActions="true" hasGlobalSearch="true">
+        <action>
+            <edit enabled="true" labelKey="EDIT"></edit>
+            <delete enabled="true" labelKey="DELETE"></delete>
+        </action>
+        <columns>
+            <column isFilterable="false" isSortable="false" class="">id</column>
+            <column isFilterable="true" isSortable="true" class="align-left">name</column>
+            <column isFilterable="true" isSortable="true" class="align-right">school</column>
+            <column isFilterable="true" isSortable="true" class="align-center">fees</column>
+            <column isFilterable="true" isSortable="true" class="">subject</column>
+            <column isFilterable="true" isSortable="true" class="">birthday</column>
+            <column isFilterable="true" isSortable="true" class="">photo</column>
+            <column isFilterable="true" isSortable="false" class="">productNo</column>
+            <column isFilterable="true" isSortable="false" class="">image</column>
+        </columns>
+    </table> -->
+   
+</component>

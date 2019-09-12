@@ -1,0 +1,221 @@
+<!-- Data-table Top bar with search and action buttons -->
+<div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+  <div class="data-tbl-search flex-grow-1">
+    <div class="col-5 px-0">
+      <input type="text" class="form-control" placeholder="{{ 'search' | translate }}">
+    </div>
+  </div>
+  <div class="data-tbl-action flex-grow-0">
+    <button type="button" class="btn btn-outline-primary mr-1" (click)="btnClick()">
+      <span class="fa fa-filter mr-1"></span>
+      <span>Filter</span>
+    </button>
+    <button type="button" class="btn btn-primary">
+      <span class="fa fa-plus mr-1"></span>
+      <span>Add new</span>
+    </button>
+  </div>
+</div>
+
+
+<!-- Data-Table HMTL -->
+<!-- 
+  Data-Table variation:
+  [tbl-bordered, tbl-borderless]
+ -->
+<div class="table-responsive">
+  <table class="table data-tbl table-hover bg-white m-0" id="myTable">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="customCheck1">
+            <label class="custom-control-label" for="customCheck1"></label>
+          </div>
+        </th>
+        <th *ngFor="let tableHeader of tableHeaders" scope="col" class="column-sort">
+          <span>{{tableHeader}}</span>
+        </th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let customer of customers | paginate: { itemsPerPage: displayRecord, currentPage: pageNumber ,totalItems: totalRecord,id:'customers'}">
+        <td scope="row">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="{{customer.id}}">
+            <label class="custom-control-label" for="{{customer.id}}"></label>
+          </div>
+        </td>
+        <td>{{customer.id}}</td>
+        <td>{{customer.name}}</td>
+        <td>{{customer.company}}</td>
+        <td>{{customer.group}}</td>
+        <td>{{customer.createdAt}}</td>
+        <td>{{customer.email}}</td>
+        <td>{{customer.productNumber}}</td>
+        <td>{{customer.image}}</td>
+        <td>
+          <button class="btn bg-transparent m-0 py-0 px-2">
+            <span class="fa fa-ellipsis-v"></span>
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td align="center" colspan="10" class="text-muted">No record found</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Data-table footer area -->
+<div class="d-flex flex-wrap justify-content-between align-items-center mt-3">
+  <!-- Data-table total entry status -->
+  <div class="data-tbl-status text-muted">
+    Showing 1 of 100 entries
+  </div>
+  <!-- Data-table pagination -->
+  <div class="data-tbl-pagination py-2">
+    <pagination-controls (pageChange)="onPageChange($event)" id="customers"></pagination-controls>
+  </div>
+  <!-- Data-table total entry display length -->
+  <div class="data-tbl-length">
+    <select name="tbl-length" id="tbl-length" class="form-control">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+    </select>
+  </div>
+</div>
+
+<!-- Data-table Filter area  -->
+<div class="data-tbl-filter {{filterStatus ? 'd-flex' : 'd-none'}} bg-white flex-column shadow">
+  <div class="filter-header p-3 d-flex align-items-center border-bottom justify-content-between">
+    <h3 class="mb-0">Filter</h3>
+    <span class="fa fa-close" (click)="btnClick()"></span>
+  </div>
+  <div class="filter-body d-flex flex-column">
+    <div class="form-group d-flex align-items-center p-3 m-0">
+      <label for="fliter-by" class="mb-0 mr-3">Filter by</label>
+      <select name="fliter-by" id="fliter-by" class="form-control">
+        <option value="1">
+          <!-- Checkbox -->
+          <div class="cmn-checkbox">
+            <input type="checkbox" type="checkbox" id="option1" />
+            <label for="option1" class="cmn-checkbox-container">
+              <div class="cmn-custom-checkbox">
+                <div class="checkbox-inner-box">
+                  <span class="custom-check"></span>
+                </div>
+              </div>
+              <div class="cmn-checkbox-label">
+                Column 1
+              </div>
+            </label>
+          </div>
+        </option>
+        <option value="2">
+          <!-- Checkbox -->
+          <div class="cmn-checkbox">
+            <input type="checkbox" type="checkbox" id="option2" />
+            <label for="option2" class="cmn-checkbox-container">
+              <div class="cmn-custom-checkbox">
+                <div class="checkbox-inner-box">
+                  <span class="custom-check"></span>
+                </div>
+              </div>
+              <div class="cmn-checkbox-label">
+                Column 2
+              </div>
+            </label>
+          </div>
+        </option>
+        <option value="3">
+          <!-- Checkbox -->
+          <div class="cmn-checkbox">
+            <input type="checkbox" type="checkbox" id="option3" />
+            <label for="option3" class="cmn-checkbox-container">
+              <div class="cmn-custom-checkbox">
+                <div class="checkbox-inner-box">
+                  <span class="custom-check"></span>
+                </div>
+              </div>
+              <div class="cmn-checkbox-label">
+                Column 3
+              </div>
+            </label>
+          </div>
+        </option>
+      </select>
+    </div>
+    <div class="filter-content px-3 h-100">
+      <div class="form-group">
+        <label for="column1">Column 1</label>
+        <div class="d-flex">
+          <input type="text" name="column1" id="column1" class="form-control">
+          <button class="btn btn-flat-danger  px-2 m-0">
+            <span class="fa fa-trash"></span>
+          </button>
+        </div>
+        <div class="invalid-feedback b-block">
+          Please enter a value.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="column2">Column 2</label>
+        <div class="d-flex">
+          <input type="text" name="column2" id="column2" class="form-control">
+          <button class="btn btn-flat-danger  px-2 m-0">
+            <span class="fa fa-trash"></span>
+          </button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="column3">Column 3</label>
+        <div class="d-flex">
+          <input type="text" name="column3" id="column3" class="form-control">
+          <button class="btn btn-flat-danger  px-2 m-0">
+            <span class="fa fa-trash"></span>
+          </button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="column1">Column 1</label>
+        <div class="d-flex">
+          <input type="text" name="column1" id="column1" class="form-control">
+          <button class="btn btn-flat-danger  px-2 m-0">
+            <span class="fa fa-trash"></span>
+          </button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="column2">Column 2</label>
+        <div class="d-flex">
+          <input type="text" name="column2" id="column2" class="form-control">
+          <button class="btn btn-flat-danger  px-2 m-0">
+            <span class="fa fa-trash"></span>
+          </button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="column3">Column 3</label>
+        <div class="d-flex">
+          <input type="text" name="column3" id="column3" class="form-control">
+          <button class="btn btn-flat-danger  px-2 m-0">
+            <span class="fa fa-trash"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="filter-footer border-top d-flex align-items-center justify-content-end p-3">
+    <button class="btn btn-flat-primary mr-1">
+      Reset
+    </button>
+    <button class="btn btn-primary">
+      Apply
+    </button>
+  </div>
+</div>

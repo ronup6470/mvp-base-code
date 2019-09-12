@@ -1,0 +1,90 @@
+<!-- Data-table Filter area  -->
+<div class="data-tbl-filter d-flex bg-white flex-column shadow">
+  <div class="filter-header p-3 d-flex align-items-center border-bottom justify-content-between">
+    <h3 class="mb-0">{{'titleFilter' | translate}}</h3>
+    <div>
+      <button type="button" class="btn btn-flat-secondary mr-2" (click)="onClearFilter()" *ngIf="isFilterApply">
+        <span>{{'btnClearFilter' | translate}}</span>
+      </button>
+      <span class="fa fa-close" (click)="dismiss()"></span>
+    </div>
+  </div>
+  <div class="filter-body d-flex flex-column">
+    <div class="filter-content px-3 h-100">
+      <form [formGroup]="filterForm">
+        <div class="form-group">
+          <label for="column1">{{ 'tableHeader.name'| translate }}</label>
+          <div>
+            <input type="text" class="form-control" placeholder="{{ 'tableHeader.name'| translate }}"
+              formControlName="firstName" />
+            <div ngxErrors="firstName">
+              <div [ngxError]="['minlength', 'maxlength']" [when]="['touched','dirty']">
+                2 characters minimum, 30 characters maximum
+              </div>
+              <div ngxError="pattern" [when]="['touched','dirty','pristine']">
+                User name is not valid
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="column1">{{ 'tableHeader.company' | translate }}</label>
+          <div>
+            <ng-select [items]="companies" bindLabel="name" bindValue="name" [clearable]="false"
+              placeholder="{{ 'tableHeader.company' | translate }}" formControlName="company">
+            </ng-select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="column1">{{ 'tableHeader.group' | translate }}</label>
+          <div>
+            <ng-select [items]="groups" bindLabel="name" bindValue="name" [clearable]="false"
+              placeholder="{{ 'tableHeader.group' | translate }}" formControlName="group">
+            </ng-select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="column1">{{ 'tableHeader.createdAt' | translate }}</label>
+          <div>
+            <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [bsConfig]="bsConfig"
+              placeholder="{{ 'tableHeader.createdAt' | translate }}" formControlName="createdAt"
+              placement="bottom left">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="column1">{{ 'tableHeader.email' | translate }}</label>
+          <div>
+            <input type="text" class="form-control" placeholder="{{ 'tableHeader.email' | translate }}"
+              formControlName="email" />
+            <div ngxErrors="email">
+              <div ngxError="pattern" [when]="['touched','dirty','pristine']">
+                User email is not valid
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="column1">{{ 'tableHeader.productNumber' | translate }}</label>
+          <div>
+            <input type="text" class="form-control" placeholder="{{ 'tableHeader.productNumber' | translate }}"
+              formControlName="productNo" />
+            <div ngxErrors="productNo">
+              <div [ngxError]="['minlength', 'maxlength']" [when]="['touched','dirty','pristine']">
+                2 characters minimum, 30 characters maximum
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="filter-footer border-top d-flex align-items-center justify-content-end p-3">
+    <button class="btn btn-flat-primary mr-1" (click)="onReset()">
+      {{'resetButton' | translate}}
+    </button>
+    <button class="btn btn-primary" [disabled]="!filterForm.valid || filterForm.pristine" (click)="onApplyFilter()">
+      {{'applyButton' | translate}}
+    </button>
+  </div>
+</div>

@@ -1,0 +1,318 @@
+.form-group {
+  label {
+    font-size: $label-font-size;
+    font-weight: $label-font-weight;
+
+    @if $label-text-capitalize {
+      text-transform: capitalize;
+    }
+
+    @else if $label-text-uppercase {
+      text-transform: uppercase;
+    }
+  }
+}
+
+.form-control {
+
+  // Note: This has no effect on <select>s in some browsers, due to the limited stylability of `<select>`s in CSS.
+  &:focus {
+    outline: 0;
+    box-shadow: none;
+  }
+
+}
+
+
+// Override bootstrap radio button style
+$custom-radio-indicator-icon-checked: str-replace(url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='#{$primary}'/%3e%3c/svg%3e"), "#", "%23");
+
+.custom-radio {
+  .custom-control-label {
+
+    // Foreground (icon)
+    &::after {
+      background: no-repeat 50% / 88% 88%;
+    }
+  }
+
+  .custom-control-input:checked~.custom-control-label {
+    &::before {
+      @include gradient-bg($component-active-color);
+    }
+
+    &::after {
+      background-image: $custom-radio-indicator-icon-checked;
+    }
+  }
+}
+
+// bootstrap custom checkbox
+.custom-control-label {
+  line-height: 24px;
+}
+
+// Select style
+.ng-select {
+  &.form-control {
+    border: 0;
+  }
+  &.ng-select-opened {
+    > .ng-select-container {
+      border-color: $border-color;
+    }
+    &.ng-select-bottom {
+      > .ng-select-container {
+        z-index: 1;
+        border-radius: $border-radius;
+      }
+    }
+  }
+  .ng-select-container {
+    .ng-value-container {
+      .ng-placeholder {
+        display: none;
+        font-size: $input-font-size;
+        color: $input-placeholder-color;
+      }
+    }
+  }
+
+  .ng-option-label {
+    font-size: $input-font-size;
+  }
+
+  &.ng-select-single,
+  &.ng-select-multiple {
+    .ng-select-container {
+      border-radius: $border-radius;
+    }
+  }
+
+  .ng-dropdown-panel {
+    &.ng-select-bottom { 
+      border-top-color: $ng-select-border;
+      margin-top: $ng-select-top-margin;
+    }
+    &.ng-select-top,
+    &.ng-select-bottom {
+      border-radius: $border-radius;
+    }
+    .ng-dropdown-panel-items {
+      .ng-optgroup,
+      .ng-option {
+        padding: 8px;
+        &:not(:last-child) {
+          border-bottom: 1px solid $border-color;
+        }
+        &.ng-option-selected, &.ng-option-selected.ng-option-marked {
+          background-color: transparent;
+          color: $ng-select-highlight;
+        }
+      }
+    }
+  }
+}
+
+// Datepicker style
+.bs-datepicker {
+  box-shadow: none;
+
+  &-head,
+  &-body {
+    min-width: 300px;
+    border-radius: $border-radius;
+  }
+
+  &-head {
+    button {
+
+      &.next,
+      &.previous {
+        border-radius: $border-radius;
+
+        span {
+          line-height: 24px;
+        }
+      }
+
+      &.current {
+        border-radius: $border-radius;
+      }
+    }
+  }
+
+  &-body {
+    table {
+
+      th,
+      td {
+        padding: 0;
+        min-width: 100%;
+        max-width: 100%;
+
+        span {
+          border-radius: $border-radius;
+        }
+      }
+    }
+  }
+
+  &-container {
+    padding: 0;
+  }
+}
+
+// Datepicker icon
+.datepicker {
+  position: relative;
+  .form-control {
+    padding-right: 25px;
+  }
+  .icon {
+    position: absolute;
+    top: 50%;
+    right: 6px;
+    transform: translateY(-50%);
+  }
+}
+
+// User profile style
+.profile-image {
+  width: $user-profile-image-size;
+  height: $user-profile-image-size;
+}
+
+.custom-file-control {
+  input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+
+  label {
+    display: inline-block;
+    padding: 5px 10px;
+    background: rgba($primary, 0.3);
+    color: $primary;
+    margin: 0;
+  }
+}
+
+// Search box with search icon
+.search-area {
+  &.form-control {
+    &:focus {
+      + .search-icon {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+  }
+}
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  color: $input-placeholder-color;
+  pointer-events: none;
+  opacity: 1;
+  transition: $transition-fade; 
+}
+
+
+/* Change ngx-bootstrap datepicker theme-color map */
+@each $name,
+$color in $theme-colors {
+  @include theming($name, $color);
+}
+
+/***********************
+  Start: Floating Form
+***********************/
+/* 
+  - Calculate floating label position.
+  - Use of bootstrap variable in calculation, we can not add below variable in base/variable.scss
+*/
+$float-label-position: calc((#{$input-line-height * 1em} + #{$input-padding-y * 2} + #{$input-height-border}) / 1.8);
+$grid-gutter: px-to-rem($grid-gutter-width / 2);
+
+.floating-form {
+  .form-group {
+    position: relative;
+    margin-top: 5px;
+    .floating-form-label {
+      position: absolute;
+      top: $float-label-position;
+      left: calc(#{$input-padding-x} + #{$grid-gutter});
+      padding: 0 $float-label-padding-x;
+      margin: 0;
+      font-size: $font-size-sm;
+      font-weight: $font-weight-normal;
+      color: darken($gray, 5%);
+      transform: translateY(-50%);
+      transition: $transition-base;
+      pointer-events: none;
+    }
+    &.float-above {
+      .floating-form-label {
+        top: 0;
+        background: $white;
+        font-size: 80%;
+        color: $primary;
+        font-weight: $label-font-weight;
+        z-index: 9;
+      }
+      .form-control {
+        padding: $input-btn-padding-y ($input-btn-padding-x + $float-label-padding-x);
+      }
+      select {
+        &.form-control {
+          padding: $input-btn-padding-y ($input-btn-padding-x + $float-label-padding-x - 0.25rem);
+        }
+      }
+    }
+  }
+  .form-control {
+    @if $enable-outline-form-control {
+      border-color: $border-color;
+    }
+    @else {
+      border: 1px solid transparent;
+      border-radius: 0;
+      border-bottom-color: $border-color;
+    }
+    &:focus {
+      @if $enable-outline-form-control {
+        border-color: $input-focus-border-color;
+      }
+      @else {
+        border-bottom-color: $input-focus-border-color;
+      }
+    }
+    &.is-invalid {
+      border-bottom-color: $danger;
+      @if $enable-outline-form-control {
+        border-color: $danger;
+        &:focus {
+          border-color: $danger;
+        }
+      }
+      &:focus {
+        border-bottom-color: $danger;
+        box-shadow: none;
+      }
+      ~ .floating-form-label {
+        color: $danger;
+      }
+      ~ .invalid-feedback {
+        display: block;
+      }
+    }
+  }
+}
+/***********************
+  End: Floating Form
+***********************/

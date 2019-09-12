@@ -1,0 +1,3 @@
+<app-data-table-ui [baseResponse]="customers$ | async" 
+  [isDeleted]="isDeleted" (getCustomer)="getCustomers($event)" (deleteCustomer)="deleteCustomer($event)"
+  (filterCustomer)="filterCustomer($event)"></app-data-table-ui>

@@ -1,0 +1,94 @@
+<form [formGroup]="userProfileFormGroup">
+  <div class="row">
+    <div class="col-12">
+      <div class="form-row">
+        <div class="form-group col-md-6 col-12">
+          <label>{{ 'FULL_NAME.LABEL' | translate }}</label>
+          <input type="text" class="form-control" placeholder="{{ 'FULL_NAME.PLACEHOLDER' | translate }}"
+            formControlName="fullName" />
+          <div ngxErrors="fullName" [isFormSubmitted]="isFormSubmitted">
+            <div ngxError="required" [when]="['touched','dirty']">
+              {{ 'FULL_NAME.REQUIRED' | translate }}
+            </div>
+            <div [ngxError]="['maxlength']" [when]="['touched','dirty']">
+              {{ 'FULL_NAME.MAXLENGTH' | translate }}
+            </div>
+            <div [ngxError]="['minlength']" [when]="['touched','dirty']">
+              {{ 'FULL_NAME.MINLENGTH' | translate }}
+            </div>
+            <div ngxError="pattern" [when]="['touched','dirty']">
+              {{ 'FULL_NAME.REGEX' | translate }}
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-6 col-12">
+          <label>{{ 'USERNAME.LABEL' | translate }}</label>
+          <input type="text" class="form-control" placeholder="{{ 'USERNAME.PLACEHOLDER' | translate }}"
+            formControlName="username" disabled="true" />
+          <div ngxErrors="username" [isFormSubmitted]="isFormSubmitted">
+            <div ngxError="required" [when]="['touched','dirty']">
+              {{ 'USERNAME.REQUIRED' | translate }}
+            </div>
+            <div ngxError="pattern" [when]="['touched','dirty']">
+              {{ 'USERNAME.REGEX' | translate }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6 col-12">
+          <label>{{ 'EMAIL.LABEL' | translate }}</label>
+          <input type="text" class="form-control" placeholder="{{ 'EMAIL.PLACEHOLDER' | translate }}"
+            formControlName="email" />
+          <div ngxErrors="email" [isFormSubmitted]="isFormSubmitted">
+            <div ngxError="required" [when]="['touched','dirty']">
+              {{ 'EMAIL.REQUIRED' | translate }}
+            </div>
+            <div ngxError="pattern" [when]="['touched','dirty']">
+              {{ 'EMAIL.REGEX' | translate }}
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-6 col-12">
+          <label>{{ 'PHONE_NO.LABEL' | translate }}</label>
+          <input type="text" class="form-control" placeholder="{{ 'PHONE_NO.PLACEHOLDER' | translate }}"
+            formControlName="phoneNumber" />
+          <div ngxErrors="phoneNumber" [isFormSubmitted]="isFormSubmitted">
+            <div ngxError="required" [when]="['touched','dirty']">
+              {{ 'PHONE_NO.REQUIRED' | translate }}
+            </div>
+            <div ngxError="pattern" [when]="['touched','dirty']">
+              {{ 'PHONE_NO.REGEX' | translate }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-12">
+          <label>{{ 'LANGUAGE.LABEL' | translate }}</label>
+          <select class="form-control py-2 px-md-2 px-1" id="exampleFormControlSelect1" formControlName="language">
+            <option *ngFor="let singleLanguage of userLanguages" [ngValue]="singleLanguage.code">
+              {{ singleLanguage.name }}
+            </option>
+          </select>
+          <div ngxErrors="language" [isFormSubmitted]="isFormSubmitted">
+            <div ngxError="required" [when]="['touched','dirty']">
+              {{ 'LANGUAGE.REQUIRED' | translate }}
+            </div>
+            <div ngxError="pattern" [when]="['touched','dirty']">
+              {{ 'LANGUAGE.REGEX' | translate }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <button class="btn btn-flat-primary mr-1" (click)="cancel();">{{ 'Cancel' | translate }}</button>
+      <button class="btn btn-primary m-2" (click)="saveUserProfile();">{{ 'Save' | translate }}</button>
+    </div>
+  </div>
+</form>

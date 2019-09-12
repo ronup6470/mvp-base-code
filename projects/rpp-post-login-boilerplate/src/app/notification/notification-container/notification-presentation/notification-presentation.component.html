@@ -1,0 +1,33 @@
+<div class="notification-area flex-grow-1 mb-4">
+  <div class="card border-0 h-100">
+    <div class="card-body">
+      <lib-notification-content [notifications]="notifications"></lib-notification-content>
+
+      <div class="col-auto d-flex flex-wrap justify-content-end align-items-center mt-3">
+        <div class="data-tbl-pagination py-2 d-flex">
+          <button class="btn btn-outline-primary btn-sm rounded-0 px-3" [disabled]="tableProperty.pageNumber === 0"
+            type="button" (click)="onPageChange(tableProperty.pageNumber - 1)"><span
+              class="fa fa-chevron-left"></span></button>
+          <button class="btn btn-outline-primary btn-sm rounded-0 px-3 ml-2"
+            [disabled]="notifications?.length < tableProperty.pageLimit" type="button"
+            (click)="onPageChange(tableProperty.pageNumber + 1)"><span class="fa fa-chevron-right"></span></button>
+          <!-- Data-table total entry display length -->
+
+          <select name="tbl-length" id="tbl-length" class="ml-2 form-control"
+            (change)="onPageSizeChange($event.target.value)">
+
+            <ng-container *ngFor="let item of pageSize">
+              <option [selected]='(tableProperty?.pageLimit===item)' value="{{item}}">
+                {{item}}
+              </option>
+              <!-- <option *ngIf="tableProperty?.totalRecord >= (item-10)" [selected]='(tableProperty?.pageLimit===item)'
+                value="{{item}}">
+                {{item}}
+              </option> -->
+            </ng-container>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

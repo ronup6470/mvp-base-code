@@ -1,0 +1,13 @@
+<div class="row p-3 no-gutters">
+    <div class="col-12">
+<app-user-form-ui
+                            [user]="user$ | async" (addUser)="addUser($event)"
+                            (updateUser)="updateUser($event)"
+           ></app-user-form-ui>
+    </div>
+ </div>
+
+
+   
+
+       

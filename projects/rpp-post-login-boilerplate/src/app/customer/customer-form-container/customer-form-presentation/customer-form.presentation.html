@@ -1,0 +1,75 @@
+<form class="floating-form" [formGroup]="customerFormGroup">
+  <div class="row">
+    <div class="form-group col-md-6 col-12 col-lg-6">
+      <input type="text" class="form-control" formControlName="firstName" floatingLabel autoFocus />
+      <label class="floating-form-label">{{ 'NAME_LABEL' | translate }}</label>
+      <div ngxErrors="firstName" [isFormSubmitted]="isFormSubmitted">
+        <div ngxError="required" [when]="['touched','dirty']">
+          {{ 'NAME.REQUIRED' | translate }}
+        </div>
+        <div [ngxError]="['maxlength']" [when]="['touched','dirty']">
+          {{ 'NAME.MAXLENGTH' | translate }}
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-md-6 col-12 col-lg-6">
+      <input type="text" class="form-control" formControlName="company" floatingLabel />
+      <label class="floating-form-label">{{ 'COMPANY_LABEL' | translate }}</label>
+      <div ngxErrors="company" [isFormSubmitted]="isFormSubmitted">
+        <div ngxError="required" [when]="['touched','dirty']">
+          {{ 'DESCRIPTION.REQUIRED' | translate }}
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-md-6 col-12 col-lg-6">
+      <input type="text" class="form-control" formControlName="group" floatingLabel />
+      <label class="floating-form-label">{{ 'GROUP_LABEL' | translate }}</label>
+      <div ngxErrors="group" [isFormSubmitted]="isFormSubmitted">
+        <div ngxError="required" [when]="['touched','dirty']">
+          {{ 'GROUP.REQUIRED' | translate }}
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-md-6 col-12 col-lg-6">
+      <input type="text" class="form-control" formControlName="email" floatingLabel />
+      <label class="floating-form-label">{{ 'EMAIL_LABEL' | translate }}</label>
+      <div ngxErrors="email" [isFormSubmitted]="isFormSubmitted">
+        <div ngxError="pattern" [when]="['touched','dirty']">
+          {{ 'EMAIL.REGEX' | translate }}
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-md-6 col-12 col-lg-6">
+      <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker formControlName="createdAt"
+        [bsConfig]="bsConfig" placement="bottom left" floatingLabel>
+      <label class="floating-form-label">{{ 'CREATEDAT_LABEL' | translate }}</label>
+    </div>
+    <div class="form-group col-md-6 col-12 col-lg-6">
+      <input type="text" class="form-control" formControlName="productNo" floatingLabel />
+      <label class="floating-form-label">{{ 'PRODUCTNO_LABEL' | translate }}</label>
+      <div ngxErrors="productNo" [isFormSubmitted]="isFormSubmitted">
+        <div ngxError="required" [when]="['touched','dirty']">
+          {{ 'PRODUCTNO.REQUIRED' | translate }}
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-md-6 col-12 col-lg-6">
+      <lib-file-upload formControlName="image" floatingLabel></lib-file-upload>
+      <label class="floating-form-label">{{ 'IMAGE_LABEL' | translate }}</label>
+      <div ngxErrors="image" [isFormSubmitted]="isFormSubmitted">
+        <div ngxError="required" [when]="['touched','dirty']">
+          {{ 'IMAGE.REQUIRED' | translate }}
+        </div>
+        <div ngxError="requiredFileType" [when]="['touched','dirty']">{{ 'fileTypeValidationMessage' | translate }}
+        </div>
+        <div ngxError="maxFileSize" [when]="['touched','dirty']">{{ 'maxSizeValidationMessage' | translate }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <button class="btn btn-flat-primary mr-1" (click)="cancel();">{{ 'btnCancel' | translate }}</button>
+      <button class="btn btn-primary m-2" (click)="saveCustomer();">{{ 'btnSave' | translate }}</button>
+    </div>
+  </div>
+</form>

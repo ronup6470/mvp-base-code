@@ -1,0 +1,8 @@
+<div class="row py-3">
+  <div class="col-12">
+    <app-user-ui [employee]="employee$ | async" (addEmployeeEmitter)="addEmployee($event)"
+      (updateEmployeeEmitter)="updateEmployee($event)" [isDeleted]="isDeleted"
+      [baseResponseCustomer]="customers$ | async" (getCustomerEmitter)="getCustomers($event)"
+      (deleteCustomerEmitter)="deleteCustomer($event)" (filterCustomerEmitter)="filterCustomer($event)"></app-user-ui>
+  </div>
+</div>

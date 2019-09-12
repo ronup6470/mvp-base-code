@@ -1,0 +1,163 @@
+<?xml version="1.0" ?>
+<models>
+	<model name="UserProfile" group="UserProfile">
+		<property name="FirstName" jsonProperty="firstName" type="string" gridVisibility="true" formVisibility="true" readOnly="false" labelKey="FIRST_NAME.LABEL" placeholderKey="FIRST_NAME.PLACEHOLDER">
+			<validations>
+				<validation type="Required" labelKey="FIRST_NAME.REQUIRED"></validation>
+				<validation type="MaxLength" labelKey="FIRST_NAME.MAXLENGTH">
+					<param>50</param>
+				</validation>
+				<validation type="MinLength" labelKey="FIRST_NAME.MINLENGTH">
+					<param>2</param>
+				</validation>
+				<validation type="Regex" labelKey="FIRST_NAME.REGEX">
+					<param>(@)(.+)$</param>
+				</validation>
+			</validations>
+		</property>
+		<property name="MiddleName" jsonProperty="middleName" type="string" gridVisibility="true" formVisibility="true" readOnly="false" labelKey="MIDDLE_NAME.LABEL" placeholderKey="MIDDLE_NAME.PLACEHOLDER">
+			<validations>
+				<validation type="MaxLength" labelKey="MIDDLE_NAME.MAXLENGTH">
+					<param>50</param>
+				</validation>
+				<validation type="MinLength" labelKey="MIDDLE_NAME.MINLENGTH">
+					<param>2</param>
+				</validation>
+				<validation type="Regex" labelKey="MIDDLE_NAME.REGEX">
+					<param>(@)(.+)$</param>
+				</validation>
+			</validations>
+		</property>
+		<property name="LastName" jsonProperty="lastName" type="string" gridVisibility="true" formVisibility="true" readOnly="false" labelKey="LAST_NAME.LABEL" placeholderKey="LAST_NAME.PLACEHOLDER">
+			<validations>
+				<validation type="Required" labelKey="LAST_NAME.REQUIRED"></validation>
+				<validation type="MaxLength" labelKey="LAST_NAME.MAXLENGTH">
+					<param>50</param>
+				</validation>
+				<validation type="MinLength" labelKey="LAST_NAME.MINLENGTH">
+					<param>2</param>
+				</validation>
+			</validations>
+		</property>
+		<property name="ProfieImage" jsonProperty="profileImage" type="string" gridVisibility="true" formVisibility="true" readOnly="false" labelKey="PROFILE_IMG.LABEL" placeholderKey="PROFILE_IMG.LABEL">
+			<validations>
+				<validation type="Required" labelKey="PROFILE_IMG.REQUIRED"></validation>
+			</validations>
+		</property>
+		<property name="Email" jsonProperty="email" type="string" formVisibility="true" gridVisibility="true" labelKey="EMAIL.LABEL" placeholderKey="EMAIL.PLACEHOLDER">
+			<validations>
+				<validation type="Required" labelKey="EMAIL.REQUIRED"></validation>
+				<validation type="Regex" labelKey="EMAIL.REGEX">
+					<param>(@)(.+)$</param>
+				</validation>
+			</validations>
+		</property>
+		<property name="Password" jsonProperty="password" type="string" gridVisibility="true" formVisibility="true" readOnly="true" labelKey="PASSWORD.LABEL" placeholderKey="PASSWORD.PLACEHOLDER">
+			<validations>
+				<validation type="Required" labelKey="PASSWORD.REQUIRED"></validation>
+				<validation type="MaxLength" labelKey="PASSWORD.MAXLENGTH">
+					<param>16</param>
+				</validation>
+				<validation type="MinLength" labelKey="PASSWORD.MINLENGTH">
+					<param>8</param>
+				</validation>
+				<validation type="Regex" labelKey="PASSWORD.REGEX">
+					<param>(@)(.+)$</param>
+				</validation>
+			</validations>
+		</property>
+		<property name="CurrentPassword" jsonProperty="currentPassword" type="string" gridVisibility="true" formVisibility="true" readOnly="false" labelKey="CURRENT_PASSWORD.LABEL" placeholderKey="CURRENT_PASSWORD.PLACEHOLDER">
+			<validations>
+				<validation type="Required" labelKey="PASSWORD.REQUIRED"></validation>
+				<validation type="MaxLength" labelKey="PASSWORD.MAXLENGTH">
+					<param>16</param>
+				</validation>
+				<validation type="MinLength" labelKey="PASSWORD.MINLENGTH">
+					<param>8</param>
+				</validation>
+				<validation type="Regex" labelKey="PASSWORD.REGEX">
+					<param>(@)(.+)$</param>
+				</validation>
+			</validations>
+		</property>
+		<property name="NewPassword" jsonProperty="newPassword" type="string" gridVisibility="true" formVisibility="true" readOnly="false" labelKey="NEW_PASSWORD.LABEL" placeholderKey="NEW_PASSWORD.PLACEHOLDER">
+			<validations>
+				<validation type="Required" labelKey="NEW_PASSWORD.REQUIRED"></validation>
+				<validation type="MaxLength" labelKey="NEW_PASSWORD.MAXLENGTH">
+					<param>16</param>
+				</validation>
+				<validation type="MinLength" labelKey="NEW_PASSWORD.MINLENGTH">
+					<param>8</param>
+				</validation>
+				<validation type="Regex" labelKey="NEW_PASSWORD.REGEX">
+					<param>(@)(.+)$</param>
+				</validation>
+			</validations>
+		</property>
+		<property name="ConfirmPassword" jsonProperty="confirmPassword" type="string" gridVisibility="true" formVisibility="true" readOnly="false" labelKey="CONFIRM_PASSWORD.LABEL" placeholderKey="CONFIRM_PASSWORD.PLACEHOLDER">
+			<validations>
+				<validation type="Required" labelKey="CONFIRM_PASSWORD.REQUIRED"></validation>
+				<validation type="MaxLength" labelKey="CONFIRM_PASSWORD.MAXLENGTH">
+					<param>16</param>
+				</validation>
+				<validation type="MinLength" labelKey="CONFIRM_PASSWORD.MINLENGTH">
+					<param>8</param>
+				</validation>
+				<validation type="Regex" labelKey="CONFIRM_PASSWORD.REGEX">
+					<param>(@)(.+)$</param>
+				</validation>
+			</validations>
+		</property>
+		<property name="PhoneNo" jsonProperty="phoneNo" type="string" gridVisibility="true" formVisibility="true" readOnly="false" labelKey="PHONE_NO.LABEL" placeholderKey="PHONE_NO.PLACEHOLDER">
+			<validations>
+				<validation type="Regex" labelKey="PHON_NO.REGEX">
+					<param>(@)(.+)$</param>
+				</validation>
+			</validations>
+		</property>
+		<property name="Dob" jsonProperty="dob" type="date" gridVisibility="true" formVisibility="true" readOnly="false" labelKey="DOD.LABEL" placeholderKey="DOD.PLACEHOLDER">
+			<validations>
+				<validation type="Required" labelKey="DOB.REQUIRED"></validation>
+				<validation type="Regex" labelKey="DOB.REGEX">
+					<param>(@)(.+)$</param>
+				</validation>
+			</validations>
+		</property>
+		<property name="Language" jsonProperty="language" type="List" typeOf="String" gridVisibility="true" formVisibility="true" readOnly="false" labelKey="LANGUAGE.LABEL" placeholderKey="LANGUAGE.PLACEHOLDER">
+			<validations>
+				<validation type="Required" labelKey="NAME.REQUIRED"></validation>
+			</validations>
+		</property>
+		<property name="Address" jsonProperty="address" type="string" gridVisibility="true" formVisibility="true" readOnly="false" labelKey="ADDRESS.LABEL" placeholderKey="ADDRESS.PLACEHOLDER">
+			<validations>
+				<validation type="Required" labelKey="ADDRESS.REQUIRED"></validation>
+				<validation type="MaxLength" labelKey="ADDRESS.MAXLENGTH">
+					<param>200</param>
+				</validation>
+				<validation type="MinLength" labelKey="ADDRESS.MINLENGTH">
+					<param>5</param>
+				</validation>
+			</validations>
+		</property>
+		<property name="Country" jsonProperty="country" type="List" typeOf="String"  gridVisibility="true" formVisibility="true" readOnly="false" labelKey="COUNTRY.LABEL" placeholderKey="COUNTRY.PLACEHOLDER">
+			<validations>
+				<validation type="Required" labelKey="COUNTRY.REQUIRED"></validation>
+			</validations>
+		</property>
+		<property name="PassportNumber" jsonProperty="passportNumber" type="string" gridVisibility="true" formVisibility="true" readOnly="true" labelKey="PASSPORT.LABEL" placeholderKey="PASSPORT.PLACEHOLDER">
+			<validations>
+				<validation type="Required" labelKey="PASSPORT.REQUIRED"></validation>
+			</validations>
+		</property>
+		<property name="Gender" jsonProperty="gender" type="string" gridVisibility="true" formVisibility="true" readOnly="false" labelKey="GENDER.LABEL" placeholderKey="GENDER.PLACEHOLDER">
+			<validations>
+				<validation type="Required" labelKey="GENDER.REQUIRED"></validation>
+			</validations>
+		</property>
+		<property name="MaritalStatus" jsonProperty="maritalStatus" type="string" gridVisibility="true" formVisibility="true" readOnly="false" labelKey="MARITAL.LABEL" placeholderKey="MARITAL.PLACEHOLDER">
+			<validations>
+				<validation type="Required" labelKey="MARITAL.REQUIRED"></validation>
+			</validations>
+		</property>
+	</model>
+</models>

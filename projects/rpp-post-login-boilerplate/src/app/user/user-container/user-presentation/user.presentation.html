@@ -1,0 +1,46 @@
+<ngb-accordion #accordion="ngbAccordion" [activeIds]="activeIds" [closeOthers]="true" (panelChange)="toggleAccordion($event)">
+    <ngb-panel id="0">
+      <ng-template ngbPanelHeader let-opened="opened">
+        <div class="d-flex align-items-center justify-content-between">
+          <h5 class="m-0">{{ 'ACCORDION.HEADER1' | translate }}</h5>
+          <button ngbPanelToggle class="btn bg-transparent p-0">
+            <span [class]="opened ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></span>
+          </button>
+        </div>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        <div class="row">
+          <div class="col-12">
+                <app-employee-form-ui [employee]="employee" 
+                (add)="addEmployee($event)" (update)="updateEmployee($event)"></app-employee-form-ui>
+            </div>
+        </div>
+          <div class="d-flex justify-content-end border-top mt-3 pt-3 px-4 mx-n4">
+            <button class="btn btn-flat-primary mr-1" (click)="onCancel('0')">{{ 'cancel' | translate }}</button>
+            <button class="btn btn-primary" (click)="onSave('1')">{{ 'save' | translate }}</button>
+          </div>
+      </ng-template>
+    </ngb-panel>
+    <ngb-panel id="1">
+      <ng-template ngbPanelHeader let-opened="opened">
+        <div class="d-flex align-items-center justify-content-between">
+          <h5 class="m-0">{{ 'ACCORDION.HEADER2' | translate }}</h5>
+          <button ngbPanelToggle class="btn bg-transparent p-0">
+            <span [class]="opened ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></span>
+          </button>
+        </div>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        <div class="row">
+          <div class="col-12">
+                <app-customer-list-ui [isDeleted]="isDeleted" [baseResponse]="customers" (getCustomer)="getCustomers($event)"
+                (deleteCustomer)="deleteCustomer($event)" (filterCustomer)="filterCustomer($event)" ></app-customer-list-ui>
+            </div>
+        </div>
+          <div class="d-flex justify-content-end border-top mt-3 pt-3 px-4 mx-n4">
+            <button class="btn btn-flat-primary mr-1" (click)="onCancel('1')">{{ 'cancel' | translate }}</button>
+            <button class="btn btn-primary" (click)="onSave('2')">{{ 'save' | translate }}</button>
+          </div>
+      </ng-template>
+    </ngb-panel>
+      </ngb-accordion>

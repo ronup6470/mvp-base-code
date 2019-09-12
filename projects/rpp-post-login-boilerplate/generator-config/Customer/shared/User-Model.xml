@@ -1,0 +1,44 @@
+
+<?xml version="1.0" ?>
+<models>
+	<model name="User" group="User">
+		<property name="userName" jsonProperty="name" type="string" gridVisibility="true" formVisibility="true"
+		 readOnly="false" labelKey="NAME_LABEL" placeholderKey="NAME_PLACEHOLDER">
+			<validations>
+				<validation type="Required" labelKey="NAME.REQUIRED"></validation>
+				<validation type="MaxLength" labelKey="NAME.MAXLENGTH">
+					<param>10</param>
+				</validation>
+			</validations>
+		</property>
+		<property name="Company" jsonProperty="company" type="string">
+			<validations>
+				<validation type="Required" labelKey="COMPANY.REQUIRED"></validation>
+			</validations>
+		</property>
+		<property name="Group" jsonProperty="group" type="string">
+			<validations>
+				<validation type="Required" labelKey="GROUP.REQUIRED"></validation>
+			</validations>
+		</property>
+		<property name="CreatedAt" jsonProperty="createdAt" type="datetime"></property>
+		<property name="Email" jsonProperty="email" type="string">
+			<validations>
+				<validation type="Regex">
+					<param>(@)(.+)$</param>
+				</validation>
+			</validations>
+		</property>
+		<property name="ProductNo" jsonProperty="productNumber" type="string">
+			<validations>
+				<validation type="Required" labelKey="GROUP.REQUIRED"></validation>
+			</validations>
+		</property>
+		<property name="Image" jsonProperty="image" type="string">
+			<!--List<AddressModel>-->
+			<validations>
+				<validation type="Required"></validation>
+			</validations>
+		</property>
+	</model>
+</models>

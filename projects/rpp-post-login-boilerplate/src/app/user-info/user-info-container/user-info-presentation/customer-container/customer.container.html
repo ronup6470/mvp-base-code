@@ -1,0 +1,12 @@
+<div class="row p-3 no-gutters">
+    <div class="col-12">
+<app-customer-list-ui
+                              [isDeleted]="isDeleted" [baseResponse]="customers$ | async" (getCustomer)="getCustomers($event)" (deleteCustomer)="deleteCustomer($event)"
+(filterCustomer)="filterCustomer($event)"           ></app-customer-list-ui>
+    </div>
+ </div>
+
+
+   
+
+       

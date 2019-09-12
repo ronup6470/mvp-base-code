@@ -1,0 +1,28 @@
+<div class="card status-card h-100 primary rounded-0 border-0">
+  <div class="card-body d-flex" *ngIf="!card.type; else cardDynamic">
+    <!-- Card Icon  -->
+    <a class="d-flex nav-link" role="button" target="_blank" rel="noopener noreferrer" [href]="card.link">
+    <div class="card-icon d-flex align-items-center justify-content-center rounded-circle">
+      <span class="icon-e-visa"></span>
+    </div>
+    <!-- End Card Icon  -->
+
+    <!-- Card Title and Description -->
+
+    <div class="card-content col flex-grow-1">
+      <h5 class="title m-0">
+       {{card.title}}
+      </h5>
+      <div *ngIf="card.description !== undefined" class="card-info flex-grow-0 text-muted">
+        <p>{{card.description}}
+        </p>
+
+      </div>
+      <!-- End Card Title and Description -->
+    </div>
+  </a>
+  </div>
+</div>
+<ng-template #cardDynamic>
+    <iframe #elRef [style.height.px]="card.height" class="embed-responsive-item" [src]="card.link"></iframe>
+</ng-template>

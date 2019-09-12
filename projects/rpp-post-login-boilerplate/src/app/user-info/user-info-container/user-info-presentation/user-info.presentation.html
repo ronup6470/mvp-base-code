@@ -1,0 +1,25 @@
+
+<div class="card h-100">
+  <div class="card-body d-flex flex-column overflow-hidden h-100 p-0">
+    <tabset #tabSet>
+      <tab heading="{{ 'TAB.HEADER1' | translate }}" (selectTab)="onSelect($event,0)">
+
+      </tab>
+      <tab heading="{{ 'TAB.HEADER2' | translate }}" (selectTab)="onSelect($event,1)">
+
+      </tab>
+      <tab heading="{{ 'TAB.HEADER3' | translate }}" (selectTab)="onSelect($event,2)">
+
+      </tab>
+     
+    </tabset>
+    <router-outlet></router-outlet>
+
+    <div class="d-flex justify-content-between border-top p-3">
+      <button class="btn btn-outline-primary mr-1" (click)="onBack()"
+        [disabled]="(tabIndex === 0)">{{ 'btnBack' | translate }}</button>
+      <button class="btn btn-primary" (click)="onNext()"
+        [disabled]="(tabIndex === tabSet.tabs.length-1)">{{ 'btnNext' | translate }}</button>
+    </div>
+  </div>
+</div>

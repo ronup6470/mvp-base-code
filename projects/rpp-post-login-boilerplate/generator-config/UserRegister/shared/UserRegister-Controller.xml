@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<controller name="UserRegister">
+	<resources>
+			<resource type="UserRegisterModel" name="UserRegister" route="UserRegister" />			
+		</resources>
+</controller>

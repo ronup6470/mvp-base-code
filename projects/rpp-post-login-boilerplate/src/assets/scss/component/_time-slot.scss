@@ -1,0 +1,82 @@
+// Slots
+
+.slots {
+  padding: 5px;
+  margin: 0;
+  border: 1px solid transparent;
+  border-radius: $border-radius;
+  font-size: $small-font-size;
+  cursor: pointer;
+
+  @each $key,
+  $value in $time-slot {
+    &.slots-#{$key} {
+      background-color: $value;
+      color: color-yiq($value);
+
+      @if $key=="active" {
+        border-color: $gray-dark;
+      }
+      @else if $key == "disabled" {
+        background-color: $value;
+        color: darken($value, 20);
+        cursor: no-drop;
+      }
+      @else if $key=="cancelled" {
+        background-color: lighten($value, 30);
+        color: $value;
+      }
+      @else {
+        border-color: $value;
+      }
+    }
+  }
+}
+
+// slot checkbox
+.slot-control {
+  position: absolute;
+  opacity: 0;
+
+  &:focus {
+    + label {
+      box-shadow: $btn-focus-box-shadow;
+    }
+  }
+}
+
+// Legends
+
+.legend-indicator {
+  width: $timeslot-legend-indicator-width;
+  height: $timeslot-legend-indicator-height;
+  border-radius: $border-radius;
+  margin-right: 5px;
+  border: 1px solid transparent;
+
+  @each $status,
+  $value in $time-slot {
+    &.#{$status} {
+      background: $value;
+
+      @if $status=="active" {
+        border-color: $gray-dark;
+      }
+
+      @else {
+        border-color: darken($value, 10);
+      }
+    }
+  }
+}
+
+.legend-label {
+  font-size: $font-size-sm;
+}
+
+// Break time 
+.break-time {
+  background: $gray-light;
+  border: 1px solid darken($gray-light, 20);
+  color: darken($gray-light, 40);
+}

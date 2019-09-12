@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<models>
+	<model name="Customer" group="Customer">
+		<property name="Id" type="int" jsonProperty="id" gridVisibility="false" formVisibility="true" readOnly="true" labelKey="ID_LABEL"></property>
+		<property name="FirstName" jsonProperty="firstName" type="string" gridVisibility="true" formVisibility="true" readOnly="false" labelKey="NAME_LABEL" placeholderKey="NAME_PLACEHOLDER">
+			<validations>
+				<validation type="Required" labelKey="NAME.REQUIRED"></validation>
+				<validation type="MaxLength" labelKey="NAME.MAXLENGTH">
+					<param>15</param>
+				</validation>
+			</validations>
+		</property>
+		<property name="Company" jsonProperty="company" type="string" gridVisibility="true" formVisibility="true" readOnly="false" labelKey="COMPANY_LABEL" placeholderKey="COMPANY_PLACEHOLDER">
+			<validations>
+				<validation type="Required" labelKey="DESCRIPTION.REQUIRED"></validation>
+			</validations>
+		</property>
+		<property name="Group" jsonProperty="group" type="string" gridVisibility="true" formVisibility="true" readOnly="false" labelKey="GROUP_LABEL" placeholderKey="GROUP_PLACEHOLDER">
+			<validations>
+				<validation type="Required" labelKey="ISADMIN.REQUIRED"></validation>
+			</validations>
+		</property>
+		<property name="CreatedAt" jsonProperty="createdAt" type="date" gridVisibility="true" formVisibility="true" readOnly="false" labelKey="CREATEDAT_LABEL" placeholderKey="CREATEDAT_PLACEHOLDER"></property>
+		<property name="Email" jsonProperty="email" type="string" gridVisibility="true" formVisibility="true" readOnly="false" labelKey="EMAIL_LABEL" placeholderKey="EMAIL_PLACEHOLDER">
+			<validations>
+				<validation type="Regex">
+					<param>(@)(.+)$</param>
+				</validation>
+			</validations>
+		</property>
+		<property name="ProductNo" jsonProperty="productNo" type="string" gridVisibility="true" formVisibility="true" readOnly="false" labelKey="PRODUCTNO_LABEL" placeholderKey="PRODUCTNO_PLACEHOLDER">
+			<validations>
+				<validation type="Required" labelKey="GROUP.REQUIRED"></validation>
+			</validations>
+		</property>
+		<property name="Image" jsonProperty="image" type="string" gridVisibility="true" formVisibility="true" readOnly="false" labelKey="IMAGE_LABEL" placeholderKey="IMAGE_PLACEHOLDER">
+			<validations>
+				<validation type="Required"></validation>
+			</validations>
+		</property>
+	</model>
+</models>

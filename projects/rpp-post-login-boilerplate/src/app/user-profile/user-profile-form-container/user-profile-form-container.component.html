@@ -1,0 +1,9 @@
+<div class="row">
+    <div class="col-12">
+  
+      <app-user-profile-form-ui [userProfile]="userProfile$ | async" [userLanguages]="userLanguages$ | async"
+        [userCountries]="userCountries$ | async" (add)="addUserProfile($event)" (update)="updateUserProfile($event)">
+      </app-user-profile-form-ui>
+    </div>
+  </div>
+  

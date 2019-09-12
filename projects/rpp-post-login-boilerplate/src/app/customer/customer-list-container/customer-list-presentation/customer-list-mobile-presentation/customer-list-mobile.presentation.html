@@ -1,0 +1,86 @@
+<div class="table-responsive">
+  <table class="table data-tbl w-100">
+    <thead>
+
+      <th scope="col" style="width: 50px">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="select-all" [checked]="isCheckAll"
+            (click)="onCheckAll()" />
+          <label class="custom-control-label" for="select-all"></label>
+        </div>
+      </th>
+      <th></th>
+      <th>{{ 'tableHeader.name' | translate }}</th>
+      <th style="width: 50px">
+        <span>{{ 'tableHeader.action' | translate }}</span>
+      </th>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let customer of customers;let i= index">
+        <tr>
+          <td scope="row">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="checkbox{{ i }}" [checked]="customer.isChecked"
+                [value]="customer" (click)="onCheck(customer)" />
+              <label class="custom-control-label" for="checkbox{{ i }}"></label>
+            </div>
+          </td>
+          <td class="hidden-in-large">
+            <button class="bg-transparent border-0 detail-action-btn {{ detailStatus ? 'open' : '' }}"
+              (click)="detailAction(customer,i)">
+              <span class="fa fa-angle-down"></span>
+            </button>
+          </td>
+          <td>{{ customer.firstName }}</td>
+          <td align="center">
+            <div ngbDropdown container="body" class="data-tbl-drpodown">
+              <button class="btn bg-transparent m-0 py-0 px-2" id="dropdownMenu{{ i }}" ngbDropdownToggle>
+                <span class="fa fa-ellipsis-v"></span>
+              </button>
+              <ul id="dropdown-basic" ngbDropdownMenu aria-labelledby="dropdownMenu">
+                <button class="dropdown-item" ngbDropdownItem
+                  routerLink="/customer/edit/">{{ 'btnEdit' | translate }}</button>
+                <button class="dropdown-item" ngbDropdownItem
+                  (click)="openModal(customer)">{{ 'btnDelete' | translate }}</button>
+              </ul>
+            </div>
+          </td>
+        </tr>
+        <ng-container cdkPortalOutlet>
+        </ng-container>
+      </ng-container>
+      <tr *ngIf="!customers || customers?.length===0  ">
+        <td align="center" colspan="10" class="text-muted">{{ 'tblMessage' | translate }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #templateRef let-customer>
+  <tr class="details-row">
+    <td colspan="4" class="data-tbl-details">
+      <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <th>{{ 'NAME_LABEL' | translate }}</th>
+          <td>{{ customer.firstName }}</td>
+        </tr>
+        <tr>
+          <th>{{ 'COMPANY_LABEL' | translate }}</th>
+          <td>{{ customer.company }}</td>
+        </tr>
+        <tr>
+          <th>{{ 'GROUP_LABEL' | translate }}</th>
+          <td>{{ customer.group }}</td>
+        </tr>
+        <tr>
+          <th>{{ 'CREATEDAT_LABEL' | translate }}</th>
+          <td>{{ customer.createdAt }}</td>
+        </tr>
+        <tr>
+          <th>{{ 'EMAIL_LABEL' | translate }}</th>
+          <td>{{ customer.email }}</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</ng-template>

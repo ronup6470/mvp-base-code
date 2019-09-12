@@ -1,0 +1,11 @@
+<div class="row">
+    <div class="col-12">
+              <app-customer-list-ui [baseResponse]="customers$ | async" (getCustomer)="getCustomers($event)"
+              (filterCustomer)="filterCustomer($event)" ></app-customer-list-ui>
+    </div>
+ </div>
+
+
+   
+
+       

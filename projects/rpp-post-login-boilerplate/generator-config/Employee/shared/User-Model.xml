@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<models>
+	<model name="User" group="User">
+		<property name="Name" jsonProperty="name" type="string" gridVisibility="true" formVisibility="true" readOnly="false" labelKey="NAME_LABEL" placeholderKey="NAME_PLACEHOLDER">
+			<validations>
+				<validation type="Required" labelKey="NAME.REQUIRED"></validation>
+				<validation type="MaxLength" labelKey="NAME.MAXLENGTH">
+					<param>30</param>
+				</validation>
+				<validation type="MinLength" labelKey="NAME.MINLENGTH">
+					<param>2</param>
+				</validation>
+			</validations>
+		</property>
+		<property name="Company" jsonProperty="company" type="string" typeOf="Company" formVisibility="true" gridVisibility="true" labelKey="COMPANY_LABEL" placeholderKey="COMPANY_PLACEHOLDER">
+			<validations>
+				<validation type="Required" labelKey="COMPANY.REQUIRED"></validation>
+			</validations>
+		</property>
+		<property name="IsAdmin" jsonProperty="isAdmin" type="string" formVisibility="true" gridVisibility="true" labelKey="ISADMIN_LABEL" placeholderKey="ISADMIN_PLACEHOLDER">
+			<validations>
+				<validation type="Required" labelKey="ISADMIN.REQUIRED"></validation>
+			</validations>
+		</property>
+		<property name="Gender" jsonProperty="gender" type="string" formVisibility="true" gridVisibility="true" labelKey="GENDER_LABEL" placeholderKey="GENDER_PLACEHOLDER">
+			<!-- <validations><validation type="Required" labelKey="GENDER.REQUIRED"></validation></validations> -->
+		</property>
+		<property name="City" jsonProperty="city" type="string" formVisibility="true" gridVisibility="true" labelKey="CITY_LABEL" placeholderKey="CITY_PLACEHOLDER">
+			<!-- <validations><validation type="Required" labelKey="CITY.REQUIRED"></validation></validations> -->
+		</property>
+		<property name="MultiCity" jsonProperty="multiCity" type="string" formVisibility="true" gridVisibility="true" labelKey="MULTICITY_LABEL" placeholderKey="MULTICITY_PLACEHOLDER">
+			<!-- <validations><validation type="Required" labelKey="MULTICITY.REQUIRED"></validation></validations> -->
+		</property>
+		<property name="CreatedAt" jsonProperty="createdAt" type="date" formVisibility="true" gridVisibility="true" labelKey="CREATEDAT_LABEL" placeholderKey="CREATEDAT_PLACEHOLDER"></property>
+		<property name="BirthDate" jsonProperty="birthDate" type="datetime" formVisibility="true" gridVisibility="true" labelKey="BIRTHDATE_LABEL" placeholderKey="BIRTHDATE_PLACEHOLDER"></property>
+		<property name="OrderTime" jsonProperty="orderTime" type="time" formVisibility="true" gridVisibility="true" labelKey="ORDERTIME_LABEL" placeholderKey="ORDERTIME_PLACEHOLDER"></property>
+		<property name="ProductNo" jsonProperty="productNumber" type="string" formVisibility="true" gridVisibility="true" labelKey="PRODUCTNUMBER_LABEL" placeholderKey="PRODUCTNUMBER_PLACEHOLDER">
+			<validations>
+				<validation type="Required" labelKey="PRODUCTNUMBER.REQUIRED"></validation>
+			</validations>
+		</property>
+		<property name="Image" jsonProperty="image" formVisibility="true" type="string" gridVisibility="true" labelKey="IMAGE_LABEL" placeholderKey="IMAGE_PLACEHOLDER">
+			<validations>
+				<validation type="Required" labelKey="IMAGE.REQUIRED"></validation>
+			</validations>
+		</property>
+		<property name="Email" jsonProperty="email" type="string" formVisibility="true" gridVisibility="true" labelKey="EMAIL_LABEL" placeholderKey="EMAIL_PLACEHOLDER">
+			<validations>
+				<validation type="Regex" labelKey="EMAIL.REGEX">
+					<param>(@)(.+)$</param>
+				</validation>
+			</validations>
+		</property>
+		<property name="Description" jsonProperty="description" formVisibility="true" type="string" gridVisibility="true" labelKey="DESCRIPTION_LABEL" placeholderKey="DESCRIPTION_PLACEHOLDER">
+			<validations>
+				<validation type="Required" labelKey="DESCRIPTION.REQUIRED"></validation>
+			</validations>
+		</property>
+	</model>
+	<model name="Company" group="Company">
+		<property name="Name" jsonProperty="name" type="string" gridVisibility="true" formVisibility="true" 
+		 readOnly="false" labelKey="NAME_LABEL" placeholderKey="NAME_PLACEHOLDER">
+		</property>
+	</model>
+</models>

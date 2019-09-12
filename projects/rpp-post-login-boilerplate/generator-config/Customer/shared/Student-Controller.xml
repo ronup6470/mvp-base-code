@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<controller name="Student">
+		<resources>
+			<resource type="Student" name="Student" route="Student" />			
+		</resources>
+
+		
+		
+		<dependencies>
+			<dependency name="Student"></dependency>						
+		</dependencies>
+</controller>

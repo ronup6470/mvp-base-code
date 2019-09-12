@@ -1,0 +1,21 @@
+<ng-container *ngIf="guideline | async; let guide">
+  <div class="card d-flex flex-column border-0 rounded-0 overflow-hidden h-100">
+    <div class="card-header bg-white flex-shrink-0 p-2">
+      <h4>{{guide.title}}</h4>
+    </div>
+
+    <div class="p-2 flex-grow-1 overflow-auto">
+      <div [innerHTML]="guide.description"></div>
+
+
+      <div *ngIf="guide.isAllowedTermCondition" class="custom-control custom-checkbox mb-2
+      ">
+        <input class="custom-control-input" type="checkbox" id="2" value="2">
+        <label class="custom-control-label cursor-pointer" for="2">{{guide.termText}}</label>
+      </div>
+      <div>
+        <button class="btn btn-primary my-2">Register</button>
+      </div>
+    </div>
+  </div>
+</ng-container>

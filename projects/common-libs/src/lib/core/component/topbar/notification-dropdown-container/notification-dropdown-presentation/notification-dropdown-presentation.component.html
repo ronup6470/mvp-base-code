@@ -1,0 +1,12 @@
+<div
+  class="dropdown-menu notification-dropdown {{dropdownState ? 'show' : ''}} mt-2 shadow rounded p-0 dropdown-menu-right border-0"
+  aria-labelledby="dropdownMenuButton" [@fadeInDown]="dropdownState ? 'open' : 'closed'">
+  <span class="arrow-up icon-drop-down text-primary"></span>
+  <div class="notification-header rounded-top bg-primary px-3 py-2">Notifications</div>
+  <lib-notification-content [notifications]="notifications"></lib-notification-content>
+  <div (click)="detachOverlay()" class="notification-footer rounded-bottom text-center border-top px-3 py-2">
+    <a class="text-muted cursor-pointer">
+      <small>See all notifications</small>
+    </a>
+  </div>
+</div>

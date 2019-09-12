@@ -1,0 +1,203 @@
+.nav-tabs {
+  flex-wrap: nowrap;
+  flex-grow: 1;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  .nav-item {
+    flex-shrink: 0;
+
+    .nav-link {
+      border: $nav-tabs-link-border-width solid $nav-tabs-link-border-color;
+    }
+
+    &.active,
+    &.show {
+      .nav-link {
+        background:$nav-pills-link-active-bg;
+        color: color-yiq($nav-pills-link-active-bg);
+        border: $nav-tabs-active-border-width solid $nav-tabs-active-border-color;
+
+        @if $disable-active-border-bottom {
+          border-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+// .nav-tabs,
+// .nav-pills {
+//   margin-bottom: 1rem;
+// }
+
+// Data-table Dropdown
+.data-tbl-dropdown {
+  .dropdown-toggle {
+    &::after {
+      display: none;
+    }
+  }
+}
+
+
+// Tab as a stepper
+.stepper {
+  .nav-tabs {
+    justify-content: space-around;
+    .nav-item {
+      position: relative;
+      text-align: center;
+      flex-grow: 1;
+      width: 100px;
+      &::before {
+        content: "";
+        position: absolute;
+        top: calc((#{$stepper-indicator-size} - #{$stepper-border-height}) / 2);
+        right: 50%;
+        background: $nav-pills-link-active-bg;
+        width: 100%;
+        height: $stepper-border-height;
+      }
+      &:first-child::before {
+        width: 0;
+        background: transparent;
+      }
+      .nav-link {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        border: 0;
+        padding: 0;
+        padding-top: $stepper-indicator-size + 10px;
+        background: transparent;
+        z-index: 9;
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          right: 0;
+          left: 0;
+          background: $nav-pills-link-active-bg;
+          height: $stepper-indicator-size;
+          width: $stepper-indicator-size;
+          margin: auto;
+          border-radius: $stepper-indicator-border-radius;
+        }
+      }
+      &.active,
+      &.show {
+        .nav-link {
+          span {
+            color: $nav-tabs-link-active-color;
+          }
+        }
+        ~ .nav-item {
+          &::before {
+            background: $nav-tabs-link-border-color;
+          }
+          .nav-link {
+            &::before {
+              background: $nav-tabs-link-border-color;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Tab as Wizard
+.wizard {
+  .nav-tabs {
+    background: $nav-divider-color;
+    .nav-item {
+      margin: 0;
+      &:hover {
+        .nav-link {
+          background: nth($nav-tabs-link-hover-border-color, 2);
+          &::after {
+            border-left-color: nth($nav-tabs-link-hover-border-color, 2);
+          }
+        }
+      }
+      &.active,
+      &.show {
+        .nav-link {
+          border: 0;
+          background: $nav-tabs-border-color;
+          &::after {
+            border-left-color: $nav-tabs-border-color;
+          }
+        }
+      }
+      &:not(:first-child) {
+        .nav-link {
+          padding-left: 40px;
+        }
+      }
+      
+      &:disabled, 
+      &.disabled {
+        &:hover {
+          .nav-link {
+            background-color: $nav-tabs-link-border-color;
+            cursor: no-drop;
+            pointer-events: none;
+            &::after {
+              border-left-color: $nav-tabs-link-border-color;
+            }
+          }
+        }
+      }
+    }
+    .nav-link {
+      position: relative;
+      border-radius: 0;
+      background: $nav-tabs-link-border-color;
+      &::after,
+      &::before {
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        height: 100%;
+        content: "";
+        transform: translateY(-50%);
+      }
+      &::after {
+        border-top: ($wizard-pointer-size + 2px) solid transparent; // 27px
+        border-bottom: $wizard-pointer-size solid transparent; // 25px
+        border-left: (floor($wizard-pointer-size / 2) + 3px) solid $nav-tabs-link-border-color; // 15px
+        z-index: 2;
+      }
+      &::before {
+        border-top: ($wizard-pointer-before-size + 2px) solid transparent; // 32px
+        border-bottom: $wizard-pointer-before-size solid transparent; // 30px
+        border-left: (floor($wizard-pointer-before-size / 2) + 3px) solid $white; // 18px
+        z-index: 1;
+      }
+    }
+  }
+}
+
+// Common style for stepper and wizard
+.stepper,
+.wizard {
+  .nav-tabs {
+    border: none;
+    flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-grow: 0;
+    -ms-flex-positive: 0;
+  }
+  .tab-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    -ms-flex-positive: 1;
+    overflow: hidden;
+    > .tab-pane {
+      display: none;
+    }
+  }
+}

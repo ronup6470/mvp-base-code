@@ -1,0 +1,81 @@
+<div class="table-responsive">
+    <table class="table data-tbl">
+        <thead>
+            <tr>
+                <th scope="col" style="width: 50px">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="select-all" [checked]="isCheckAll" (click)="onCheckAll()" />
+                        <label class="custom-control-label" for="select-all"></label>
+                    </div>
+                </th>
+                <th >
+                    <span>{{ 'NAME_LABEL' | translate }}</span>
+                </th>
+                <th appSortingOrder [column]="'company'" (orderType)="onSortOrder('company',$event)" scope="col" class="column-sort">
+                    <span>{{ 'COMPANY_LABEL' | translate }}</span>
+                </th>
+                <th appSortingOrder [column]="'group'" (orderType)="onSortOrder('group',$event)" scope="col" class="column-sort">
+                    <span>{{ 'GROUP_LABEL' | translate }}</span>
+                </th>
+                <th appSortingOrder [column]="'createdAt'" (orderType)="onSortOrder('createdAt',$event)" scope="col" class="column-sort">
+                    <span>{{ 'CREATEDAT_LABEL' | translate }}</span>
+                </th>
+                <th >
+                    <span>{{ 'EMAIL_LABEL' | translate }}</span>
+                </th>
+                <th >
+                    <span>{{ 'PRODUCTNO_LABEL' | translate }}</span>
+                </th>
+                <th >
+                    <span>{{ 'IMAGE_LABEL' | translate }}</span>
+                </th>
+                <th>
+                    <span>{{ 'action' | translate }}</span>
+                </th>            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let customer of customers;trackBy: trackBy;let i= index">
+                <td scope="row">
+                    <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="checkbox{{i}}" [checked]="customer.isChecked"
+                        [value]="customer" (click)="onCheck(customer)" />
+                    <label class="custom-control-label" for="checkbox{{i}}"></label>
+                    </div>
+                </td>
+                <td class="align-left">{{customer.firstName}}</td>
+                <td class="align-right">{{customer.company}}</td>
+                <td class="align-center">{{customer.group}}</td>
+                <td>{{customer.createdAt}}</td>
+                <td>{{customer.email}}</td>
+                <td>{{customer.productNo}}</td>
+                <td>{{customer.image}}</td>
+                <td align="center">
+                    <div ngbDropdown container="body" class="data-tbl-drpodown">
+                    <button class="btn bg-transparent m-0 py-0 px-2" ngbDropdownToggle>
+                        <span class="fa fa-ellipsis-v"></span>
+                    </button>
+                    <ul id="dropdown-basic" ngbDropdownMenu aria-labelledby="dropdownMenu">
+                        <button class="dropdown-item" ngbDropdownItem routerLink="/customer/edit/">{{'EDIT' | translate}}</button>
+                        <button class="dropdown-item" ngbDropdownItem
+                        (click)="openModal(customer)">{{'DELETE' | translate}}</button>
+                    </ul>
+                    </div>
+                </td>
+            </tr>
+
+            <!-- colspan base on total column -->
+            <tr *ngIf="!customers || customers.length === 0">
+                <td align="center" colspan="10" class="text-muted">{{'tblMessage' | translate}}</td>
+            </tr>        
+        </tbody>
+    </table>
+</div>
+
+<ng-template #modalTemplate>
+    <div class="modal-body text-center">
+        <p>Do you want to delete record?</p>
+        <button type="button" class="btn btn-default" (click)="confirm()">Yes</button>
+        <button type="button" class="btn btn-primary" (click)="decline()">No</button>
+    </div>
+</ng-template>
+

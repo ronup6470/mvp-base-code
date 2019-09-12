@@ -1,0 +1,59 @@
+<div class="row justify-content-between align-items-center mb-3">
+  <div class="input-group col-12 col-md-7 col-lg-6 my-1">
+    <input type="text" class="form-control" #search (keyup.enter)="onSearch(search.value)" name="search-area"
+      id="search-area" placeholder="{{ 'search' | translate }}" aria-label="Search" aria-describedby="button-addon2">
+    <div class="input-group-append mr-sm-2">
+      <button class="btn btn-primary" type="button" (click)="onSearch(search.value)">
+        <span class="fa fa-search px-2"></span>
+      </button>
+    </div>
+  </div>
+  <div class="col-auto">
+    <div class="mt-2 data-tbl-action">
+      <button *ngIf="isMobileDevice" type="button"
+        [class]=" isSortApply ? 'btn btn-primary mr-1' : 'btn btn-outline-primary mr-1'" (click)="openSort()">
+        <span class="fa fa-sort-alpha-asc mr-1"></span>
+      </button>
+      <button type="button" class="" [class]=" isFilterApply ? 'btn btn-primary mr-1' : 'btn btn-outline-primary mr-1' "
+        (click)="openFilter()">
+        <span class="fa fa-filter mr-1"></span>
+        <span *ngIf="!isMobileDevice">{{ 'btnFilter' | translate }}</span>
+      </button>
+      <button type="button" class="btn btn-outline-primary" routerLink="/customer/add">
+        <span class="fa fa-plus mr-1"></span>
+        <span *ngIf="!isMobileDevice">{{ 'btnNewRecord' | translate }}</span>
+      </button>
+    </div>
+  </div>
+</div>
+<!-- Data-table mobile view or desktop view -->
+<ng-container #container></ng-container>
+
+<!-- Data-table footer area -->
+<!-- Data-table footer area -->
+<div *ngIf="baseResponse?.length > 0 || tableProperty.pageNumber >= 1"
+  class="col-auto col-md-12 d-flex flex-wrap justify-content-between align-items-center mt-3">
+  <!-- Data-table total entry status -->
+  <div class="data-tbl-status text-muted">
+    {{ 'paginationShowing' | translate }} {{ tableProperty?.start }} {{ 'paginationTo' | translate }}
+    {{ tableProperty?.end }}.
+  </div>
+  <!-- Data-table pagination -->
+  <div class="data-tbl-pagination py-2 ml-auto d-flex">
+    <button class="btn btn-outline-primary btn-sm rounded-0 px-3" [disabled]="tableProperty.pageNumber === 0"
+      type="button" (click)="onPageChange(tableProperty.pageNumber - 1)"><span
+        class="fa fa-chevron-left"></span></button>
+    <button class="btn btn-outline-primary btn-sm rounded-0 px-3 ml-2"
+      [disabled]="baseResponse?.length < tableProperty.pageLimit" type="button"
+      (click)="onPageChange(tableProperty.pageNumber + 1)"><span class="fa fa-chevron-right"></span></button>
+    <!-- Data-table total entry display length -->
+    <select name="tbl-length" id="tbl-length" class="ml-2 form-control"
+      (change)="onPageSizeChange($event.target.value)">
+      <ng-container *ngFor="let item of pageSize">
+        <option [selected]='(tableProperty?.pageLimit===item)' value="{{ item }}">
+          {{ item }}
+        </option>
+      </ng-container>
+    </select>
+  </div>
+</div>

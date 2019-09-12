@@ -1,0 +1,66 @@
+<?xml version="1.0" ?>
+<models>
+		<model name="Employee" group="Employee">
+			<property name="CustNo" jsonProperty="No" type="string"  gridVisibility="true" formVisibility="true" readOnly="false" labelKey="CustNo_LABEL"  >
+				<validations>
+					<validation type="Required" labelKey="FIRSTNAME.REQUIRED"></validation> 
+					<validation type="Custom" labelKey="FIRSTNAME.Custom"></validation> 
+				</validations>
+			</property>
+			<property name="FirstName" jsonProperty="firstName" type="string"  gridVisibility="true" formVisibility="true" readOnly="false" labelKey="FNAME_LABEL"  >
+				<validations>
+					<validation type="Required"></validation> 
+					<validation type="maxLength">
+						<param>10</param>
+					</validation> 					
+				</validations>
+			</property>
+			<property name="LastName" jsonProperty="" type="string" gridVisibility="true" formVisibility="true" readOnly="false" labelKey="">
+				<validations>
+					<validation type="Required"></validation> 					
+					 
+				</validations>
+			</property>
+			<property name="Email" jsonProperty="" type="string"  gridVisibility="true" formVisibility="true" readOnly="false" labelKey="">
+				<validations>
+					<validation type="Regex"  >
+						<param>(@)(.+)$</param>
+					</validation> 					
+				</validations>			
+			</property>
+			<property name="Address" jsonProperty="" type="List" typeOf="Addressmodel"  gridVisibility="true" formVisibility="true" readOnly="false" labelKey="" >
+				<!--List<AddressModel>-->
+				<validations>
+					<validation type="Required"></validation> 
+				</validations>
+			</property>	
+			<property name="text" jsonProperty="" type="List" typeOf="String"   gridVisibility="true" formVisibility="true" readOnly="false" labelKey="">				
+				<validations>
+					<validation type="Required"></validation> 
+				</validations>
+			</property>				
+		</model>		
+		<model name="Address" group="customer">
+			<property name="Address1" jsonProperty="add1" type="string"  gridVisibility="true" formVisibility="true" readOnly="false" labelKey="">
+				<validations>
+					<validation type="Required"></validation> 
+				</validations>
+			</property>
+			<property name="Address2" jsonProperty="add2" type="string"  gridVisibility="true" formVisibility="true" readOnly="false" labelKey="">
+				<validations>
+					<validation type="Required"></validation> 
+				</validations>
+			</property>
+			<property name="CityId" jsonProperty="" type="int"  gridVisibility="true" formVisibility="true" readOnly="false" labelKey="">
+				<validations>
+					<validation type="Required"></validation> 
+				</validations>
+			</property>
+			<property name="StateId" jsonProperty="" type="int"  gridVisibility="true" formVisibility="true" readOnly="false" labelKey="">
+				<validations>
+					<validation type="Required"></validation> 
+				</validations>
+			</property>
+		</model>
+		 
+</models>

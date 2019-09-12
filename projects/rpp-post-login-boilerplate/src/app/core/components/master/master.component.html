@@ -1,0 +1,34 @@
+<!-- Wrapper -->
+<section id="wrapper" class="d-flex flex-row h-100">
+
+  <input type="checkbox" name="toggle-menu" id="toggle-menu">
+
+  <!-- Sidebar -->
+  <aside id="primary-nav" class="d-flex flex-column shadow">
+    <lib-sidebar [menuData]="menus$ | async" [helpContentData]="helpContents$ | async"
+      class="d-flex flex-column h-100 overflow-hidden"></lib-sidebar>
+  </aside>
+  <!-- End: Sidebar -->
+
+  <!-- Main Content -->
+  <section id="content-wrapper" class="overflow-hidden d-flex flex-column">
+    <!-- Label for small media overlay close -->
+    <label for="toggle-menu" class="toggle-menu-icon content-overlay m-0"></label>
+    <!-- topbar -->
+    <lib-topbar-ui [userData]="logedInUserData$ | async" [languageData]="languages$ | async"
+      [notificationUrl]="notificationUrl"></lib-topbar-ui>
+
+    <!-- Main Working area -->
+    <main id="content" class="d-flex flex-grow-1 overflow-hidden">
+      <div class="content-body p-3 flex-grow-1 overflow-auto">
+        <!-- <app-help-content></app-help-content> -->
+
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+
+  </section>
+  <!-- End: Main Content -->
+
+</section>
+<!-- End Wrapper -->

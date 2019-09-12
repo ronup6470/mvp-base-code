@@ -1,0 +1,26 @@
+@each $color, $value in $theme-colors {
+  .btn-flat-#{$color} {
+    border-color: transparent;
+    background: transparent;
+    color: $value;
+    &:hover {
+      background: rgba($value, 0.3);
+      color: $value;
+    }
+    &:focus {
+      background: rgba($value, 0.4);
+      color: $value;
+    }
+  }
+}
+
+.rounded-btn {
+  width: $rounded-btn-size;
+  height: $rounded-btn-size;
+  @if $enable-rounded {
+    border-radius: 50%;
+  }
+  @else {
+    border-radius: 0;
+  }
+}

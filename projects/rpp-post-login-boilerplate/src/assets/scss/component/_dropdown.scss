@@ -1,0 +1,14 @@
+.arrow-up {
+  position: absolute;
+  right: 8px;
+  top: -12px;
+  transform: rotate(180deg);
+}
+
+.data-tbl-drpodown {
+  .dropdown-toggle {
+    &:after {
+      display: none;
+    }
+  }
+}

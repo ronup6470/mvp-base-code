@@ -1,0 +1,13 @@
+<div class="row p-3 no-gutters">
+    <div class="col-12">
+<app-employee-form-ui
+                            [employee]="employee$ | async" (addEmployee)="addEmployee($event)"
+                            (updateEmployee)="updateEmployee($event)"
+           ></app-employee-form-ui>
+    </div>
+ </div>
+
+
+   
+
+       

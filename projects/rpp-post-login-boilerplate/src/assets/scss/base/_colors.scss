@@ -1,0 +1,152 @@
+// Theme-colors
+/*================================ 
+    Variables from ROC style guide
+================================== */
+$primary:           #3C4858;  // Primary color
+$primary-dark:        darken($primary, 18.5%);  // Primary element's hover color, Active and Selected state color
+
+// Neutral colors
+$gray:              #D7D8DA;  // Border, Placeholder color
+$gray-light:        #E8EAEB;  // Disabled color
+$gray-dark:         #616161;  // Form label, Secondary body text color
+
+$white:             #ffffff;
+$gray-100:          #f8f9fa;
+$gray-200:          #e9ecef;
+$gray-300:          #dee2e6;
+$gray-400:          #ced4da;
+$gray-500:          #adb5bd;
+$gray-600:          #6c757d;
+$gray-700:          #495057;
+$gray-800:          #343a40;
+$gray-900:          #212529;
+$black:             #000000;
+
+// Body text colors
+$body-color:        #212121;  // Body text, Headings color
+$body-inverted-color: $white;   // Inverted body text color
+
+// Semantic colors
+$success:       #4FCA9B;   // Success actions, positive button color
+$info:          #6F67FA;   // Info actions
+$warning:       #FFAB58;   // Warning actions
+$danger:        #F14D4D;   // Danger actions, negative button color
+
+/*===================================== 
+    End: Variables from ROC style guide
+======================================= */
+
+$secondary:         $gray-dark;
+$light:             #eeeeee;
+$container-bg:      #f3f5f7;
+
+$theme-colors: (
+    "primary":      $primary,
+    "secondary":    $secondary,
+    "success":      $success,
+    "info":         $info,
+    "warning":      $warning,
+    "danger":       $danger,
+    "gray":         $gray,
+    "primary-dark": $primary-dark,
+    "light":        $gray-500
+);
+
+
+// TOPBAR Color
+$topbar-bg: $white;
+
+
+/***************************
+    => DATA TABLE    
+***************************/
+
+$table-bg: null; // --> Table background color
+$table-color: $body-color; // --> Table Text color
+$table-border-color:$light; // --> Table Border Color
+// --> To apply thead color, Make sure $enable-table-head-color is true in _variables.scss 
+$table-head-color: $white; // --> Table Heading Background color
+$table-row-bg: $white; // --> Table Row background color
+$table-hover-color: $body-color; // --> Table Row Hover Background Color
+$table-hover-bg: $gray-light; // --> Table Row Hover Text Color
+$table-selected-row-fill-color: $primary; // --> Table Selected Row Fill color
+
+
+/***************************
+    => End DATA TABLE    
+***************************/
+
+/****************
+    => Forms   
+****************/
+// --> Input background color
+$input-bg: $white;
+$input-disabled-bg: $light;
+$input-border-color: $light;
+$input-placeholder-color: $gray-400;
+$custom-file-color:$input-placeholder-color;
+$custom-file-button-color: $primary;
+
+$custom-control-indicator-checked-border-color: $primary-dark;
+$custom-control-indicator-checked-bg: $primary-dark;
+
+// $input-color: $gray-700;
+
+// ==> ng-select
+$ng-select-highlight: rgba($primary, 0.3);
+$ng-select-primary-text: $gray-900;
+$ng-select-disabled-text: $gray-100;
+$ng-select-border: $input-border-color;
+$ng-select-bg: $input-bg;
+
+
+/******************
+    => End Forms   
+*******************/
+
+/***************
+    => Tabs
+***************/
+$nav-tabs-border-color:                 transparent;
+$nav-link-disabled-color:               $gray-600;
+$nav-pills-link-active-bg:              $primary;
+$nav-tabs-border-color:                 $nav-pills-link-active-bg;
+$nav-tabs-link-border-color:            $gray-400;
+$nav-tabs-link-hover-border-color:      $gray-200 $gray-200 $nav-tabs-border-color;
+$nav-tabs-active-border-color:          transparent;
+$nav-divider-color:                     $gray-200;
+/***************
+    => End Tabs
+*****************/
+
+/******************************
+    => Accordion  
+*****************************/
+
+$accordion-color:                   $gray-dark; // Accordion Text color
+// To apply color to accordion head, Make sure $enable-accordion-head-color is true in _variables.scss 
+$accordion-head-bg:                 $gray-200; // Accordion Heading Background color
+$accordion-body-bg:                 $white; // Accordion Body Background color
+$accordion-head-hover-color:        null; // Accordion Head Hover Background Color
+$accordion-border-color:            #e6e6e6; // Accordion Overall Border Color
+$accordion-head-border-color:       $accordion-border-color; // Accordion Head Border Color
+$accordion-body-border-color:       $accordion-border-color; // Accordion Body Border Color
+$accordion-active:                  $primary; // Background for Active Accordion
+
+/******************************
+    => End Accordion  
+*****************************/
+
+/******************************
+    => Time Slot 
+*****************************/
+$time-slot: (
+  "active": $white,
+  "disabled": $gray-light,
+  "cancelled": $danger,
+  "selected": $primary
+);
+
+// Tooltip
+
+$tooltip-bg:                        $primary;

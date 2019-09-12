@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<controller name="Customer">
+	<resource type="Customer" />
+	<actions>
+		<action verb="Get" name="getCustomer" route="customer/{id}" validationEnable="false" cacheEnable="true">
+			<request>
+				<param name="id" type="int" bindFrom="Query" />
+				<param name="number" type="int" bindFrom="Query" />
+			</request>
+			<response type="Customer" />
+		</action>
+		<action verb="Get" name="allCustomer" route="" validationEnable="false" cacheEnable="true">
+			<response type="List" typeOf="Customer" />
+		</action>
+		<action verb="Post" name="addCustomerId" route="" validationEnable="true">
+			<request>
+				<param name="customer" type="Customer" bindFrom="Body" />
+			</request>
+			<response type="int" />
+		</action>
+	</actions>
+</controller>

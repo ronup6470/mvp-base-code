@@ -1,0 +1,50 @@
+<!-- Data-table Filter area  -->
+<div class="data-tbl-filter d-flex bg-white flex-column shadow">
+    <div class="filter-header p-3 d-flex align-items-center border-bottom justify-content-between">
+        <h3 class="mb-0">{{'titleSort' | translate}}</h3>
+        <span class="fa fa-close" (click)="dismiss()"></span>
+
+    </div>
+
+    <div class="sorting-body d-flex flex-column flex-grow-1 overflow-auto">
+        <div class="sorting-content p-3 h-100">
+            <form [formGroup]="sortForm">
+                <h5>{{ 'lblSortBy' | translate }}</h5>
+                <div class="form-group">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input class="custom-control-input" type="radio" id="ascending" value="+" formControlName="sortBy">
+                        <label class="custom-control-label" for="ascending">{{ 'lblAscending' | translate }}</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input class="custom-control-input" type="radio" id="descending" value="-" formControlName="sortBy">
+                        <label class="custom-control-label" for="descending">{{ 'lblDescending' | translate }}</label>
+                    </div>
+                </div>
+                <h5>{{ 'lblSelectField' | translate }}</h5>
+                <div class="form-group">
+
+                    <ng-select [items]="sortArray" [clearable]="false" placeholder="{{ 'selectColumnPlaceholder' | translate }}" formControlName="sortColumn">
+                    </ng-select>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="sorting-footer border-top d-flex align-items-center justify-content-end p-3">
+        <button class="btn btn-flat-primary mr-1" (click)="onReset()">
+            {{'resetButton' | translate}}
+        </button>
+        <button class="btn btn-primary mr-1" [disabled]="!sortForm.valid || sortForm.pristine" (click)="onApplySort()">
+            {{'applyButton' | translate}}
+        </button>
+    </div>
+
+    <!-- <div class="filter-footer border-top d-flex align-items-center justify-content-end p-3">
+          <button class="btn btn-flat-primary mr-1" (click)="onReset()">
+            {{'filterResetButton' | translate}}
+          </button>
+          <button class="btn btn-primary" [disabled]="!sortForm.valid || sortForm.pristine" (click)="onApplyFilter()">
+              {{'filterApplyButton' | translate}}
+          </button>
+        </div> -->
+</div>

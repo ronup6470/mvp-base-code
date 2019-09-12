@@ -1,0 +1,14 @@
+<div role="document" class="modal-dialog modal-sm" [ngClass]="{
+  'modal-sm': modalSize === 'small',
+  'modal-md': modalSize === 'medium',
+  'modal-lg': modalSize === 'large'
+  }" *ngIf="isTemplateVisible">
+  <div class="modal-content">
+    <div class="modal-body text-center">
+      <p>{{ confirmationMessage }}</p>
+      <button type="button" class="btn btn-primary" (click)="confirm()">{{ positiveAction }}</button>
+      <button type="button" class="btn btn-flat-primary" (click)="decline()">{{ negativeAction }}</button>
+    </div>
+  </div>
+</div>
+<ng-container #viewContainerRef></ng-container>
